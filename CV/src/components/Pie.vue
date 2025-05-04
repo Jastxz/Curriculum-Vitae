@@ -1,0 +1,104 @@
+<template>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="contact-info">
+        <span>© 2025 Javier Gil</span>
+        <span class="separator">—</span>
+        <a href="mailto:javicraft14@gmail.com" class="footer-link">Mail</a>
+        <span class="dot">•</span>
+        <a href="https://github.com/Jastxz" target="_blank" class="footer-link">GitHub</a>
+        <span class="dot">•</span>
+        <a href="http://www.linkedin.com/in/javier-gil-blázquez-a84015219" target="_blank" class="footer-link">LinkedIn</a>
+      </div>
+      <div class="made-with">Hecho con <span class="vue-text">Vue</span></div>
+    </div>
+  </footer>
+</template>
+
+<script setup lang="ts">
+</script>
+
+<style scoped>
+.footer {
+  width: 100%;
+  padding: 1.5rem 0;
+  background: linear-gradient(to right, #2c3e50, #4b6cb7);
+  color: white;
+  font-size: 0.875rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.separator {
+  margin: 0 0.25rem;
+}
+
+.dot {
+  margin: 0 0.5rem;
+  opacity: 0.7;
+}
+
+.footer-link {
+  color: #a5d8ff;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    text-decoration 0.2s ease;
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #a5d8ff;
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.made-with {
+  margin-top: 0.75rem;
+  opacity: 0.9;
+}
+
+.vue-text {
+  color: #00ff15;
+  font-weight: 600;
+}
+
+/* Estilos responsivos */
+@media (max-width: 640px) {
+  .contact-info {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .separator,
+  .dot {
+    display: none;
+  }
+}
+</style>
