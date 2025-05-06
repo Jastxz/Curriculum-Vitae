@@ -185,7 +185,7 @@ onUnmounted(() => {
   left: 0;
   height: 100vh;
   width: 250px;
-  background: linear-gradient(to bottom, #2c3e50, #4b6cb7);
+  background: linear-gradient(to bottom, #3498DB, #1ABC9C);
   color: white;
   z-index: 1000;
   transition: transform 0.3s ease;
@@ -227,20 +227,20 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   padding: 1rem 1.5rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #F8F9FA;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #1abc9ca2;
   color: white;
 }
 
 .nav-link.active {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #1abc9ca2;
   color: white;
-  border-left: 4px solid #a5d8ff;
+  border-left: 4px solid #ECF0F1;
 }
 
 .nav-icon {
@@ -265,7 +265,7 @@ onUnmounted(() => {
 }
 
 .social-link:hover {
-  color: white;
+  color: #ffc86f;
 }
 
 /* Estilos para el botón hamburguesa */
@@ -275,7 +275,7 @@ onUnmounted(() => {
   right: -3.5rem;
   width: 3rem;
   height: 3rem;
-  background-color: #4b6cb7;
+  background-color: #3498DB;
   border-radius: 0 4px 4px 0;
   display: flex;
   align-items: center;

@@ -22,7 +22,7 @@
 .footer {
   width: 100%;
   padding: 1.5rem 0;
-  background: linear-gradient(to right, #2c3e50, #4b6cb7);
+  background: linear-gradient(to left, #3498DB, #1ABC9C);
   color: white;
   font-size: 0.875rem;
 }
@@ -52,7 +52,7 @@
 }
 
 .footer-link {
-  color: #a5d8ff;
+  color: #ffc86f;
   text-decoration: none;
   transition:
     color 0.2s ease,
@@ -67,12 +67,12 @@
   height: 1px;
   bottom: -2px;
   left: 0;
-  background-color: #a5d8ff;
+  background-color: #ffc86f;
   transition: width 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #ffffff;
+  color: #F8F9FA;
 }
 
 .footer-link:hover::after {
@@ -85,7 +85,7 @@
 }
 
 .vue-text {
-  color: #00ff15;
+  color: #49ff58;
   font-weight: 600;
 }
 

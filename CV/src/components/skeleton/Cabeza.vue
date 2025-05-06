@@ -14,7 +14,7 @@
 .header {
   width: 100%;
   padding: 2rem 0;
-  background: linear-gradient(to right, #2c3e50, #4b6cb7);
+  background: linear-gradient(to right, #3498DB, #1ABC9C);
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
