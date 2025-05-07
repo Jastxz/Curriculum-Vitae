@@ -3,6 +3,7 @@
     <div class="header-content">
       <h1 class="name">Javier Gil Blázquez</h1>
       <h2 class="role">Desarrollador Backend</h2>
+      <h3 class="motivation">'Con el tiempo suficiente, refactorizo cualquier sistema'</h3>
     </div>
   </header>
 </template>
@@ -36,6 +37,14 @@
 .role {
   font-size: 1.5rem;
   font-weight: 400;
+  margin: 0.5rem 0 0;
+  opacity: 0.9;
+}
+
+.motivation {
+  font-size: 1rem;
+  font-weight: 300;
+  font-style: italic;
   margin: 0.5rem 0 0;
   opacity: 0.9;
 }

@@ -8,7 +8,21 @@
         <span class="dot">•</span>
         <a href="https://github.com/Jastxz" target="_blank" class="footer-link">GitHub</a>
         <span class="dot">•</span>
-        <a href="http://www.linkedin.com/in/javier-gil-blázquez-a84015219" target="_blank" class="footer-link">LinkedIn</a>
+        <a
+          href="http://www.linkedin.com/in/javier-gil-blázquez-a84015219"
+          target="_blank"
+          class="footer-link"
+          >LinkedIn</a
+        >
+      </div>
+      <div class="contact-info">
+        <a :href="cvDownloadLinkES" target="_blank" class="footer-link">
+          <span>Descargar CV ES</span>
+        </a>
+        <span class="dot">•</span>
+        <a :href="cvDownloadLinkEN" target="_blank" class="footer-link">
+          <span>Download CV EN</span>
+        </a>
       </div>
       <div class="made-with">Hecho con <span class="vue-text">Vue</span></div>
     </div>
@@ -16,13 +30,16 @@
 </template>
 
 <script setup lang="ts">
+// Enlace de descarga de CV
+const cvDownloadLinkES = "https://docs.google.com/document/d/1BpEp3Xwy3bsel0OpNQPGe7oAS4NTftIHgIlcR-y485Y/edit?usp=drive_link"
+const cvDownloadLinkEN = "https://docs.google.com/document/d/1x49RGZPNeZimYRvpMlToUlk6E00t9MUMSBUlMPuycB4/edit?usp=drive_link"
 </script>
 
 <style scoped>
 .footer {
   width: 100%;
   padding: 1.5rem 0;
-  background: linear-gradient(to left, #3498DB, #1ABC9C);
+  background: linear-gradient(to left, #3498db, #1abc9c);
   color: white;
   font-size: 0.875rem;
 }
@@ -72,7 +89,7 @@
 }
 
 .footer-link:hover {
-  color: #F8F9FA;
+  color: #f8f9fa;
 }
 
 .footer-link:hover::after {

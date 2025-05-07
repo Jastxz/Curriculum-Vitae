@@ -3,7 +3,7 @@
         <!-- Sección Inicio -->
         <section id="home" class="section">
           <h2>Inicio</h2>
-          <!-- Contenido de la sección -->
+          <ContenidoInicio></ContenidoInicio>
         </section>
 
         <!-- Sección Sobre mí -->
@@ -33,6 +33,7 @@
 </template>
 
 <script setup lang="ts">
+import ContenidoInicio from '../home/ContenidoInicio.vue';
 </script>
 
 <style>
