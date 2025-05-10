@@ -6,12 +6,6 @@
           <ContenidoInicio></ContenidoInicio>
         </section>
 
-        <!-- Sección Sobre mí -->
-        <section id="about" class="section">
-          <h2>Sobre mí</h2>
-          <!-- Contenido de la sección -->
-        </section>
-
         <!-- Sección Experiencia -->
         <section id="experience" class="section">
           <h2>Experiencia</h2>
