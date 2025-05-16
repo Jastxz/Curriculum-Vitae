@@ -9,7 +9,7 @@
         <!-- Sección Experiencia -->
         <section id="experience" class="section">
           <h2>Experiencia</h2>
-          <!-- Contenido de la sección -->
+          <ContenidoExperiencia></ContenidoExperiencia>
         </section>
 
         <!-- Sección Proyectos -->
@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import ContenidoInicio from '../home/ContenidoInicio.vue';
+import ContenidoExperiencia from '../home/ContenidoExperiencia.vue';
 </script>
 
 <style>

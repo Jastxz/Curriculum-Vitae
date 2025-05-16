@@ -102,10 +102,10 @@ defineProps({
   display: flex;
   border-radius: 12px;
   overflow: hidden;
-  background-color: white;
+  background-color: var(--color-background);
   box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    0 4px 6px -1px var(--sombras-1),
+    0 2px 4px -1px var(--sombras-2);
   margin: 1.5rem 0;
 }
 
@@ -167,7 +167,7 @@ defineProps({
   margin: 0 0 0.25rem;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--color-text);
   line-height: 1.3;
 }
 
@@ -175,7 +175,7 @@ defineProps({
   margin: 0;
   font-size: 0.95rem;
   font-weight: 400;
-  color: #6b7280;
+  color: var(--color-text-weak);
 }
 
 /* Icono */
@@ -205,32 +205,32 @@ defineProps({
 .card-body {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #4b5563;
+  color: var(--color-text);
 }
 
 /* Footer */
 .card-footer {
   margin-top: 1.5rem;
   padding-top: 1rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--color-secundary);
 }
 
 /* Temas */
 .theme-default {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-secundary);
 }
 
 .theme-primary {
-  border-top: 4px solid #4b6cb7;
+  border-top: 4px solid var(--color-primary);
 }
 
 .theme-secondary {
-  border-left: 4px solid #4b6cb7;
+  border-left: 4px solid var(--color-primary);
 }
 
 .theme-accent {
-  background: linear-gradient(to bottom right, #ffffff, #f3f4f6);
-  border: 1px solid #e5e7eb;
+  background: linear-gradient(to bottom right, var(--color-primary), var(--color-secundary));
+  border: 1px solid var(--color-text);
 }
 
 /* Hover effect */
@@ -243,8 +243,8 @@ defineProps({
 .with-hover:hover {
   transform: translateY(-5px);
   box-shadow:
-    0 10px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    0 10px 25px -5px var(--sombras-1),
+    0 10px 10px -5px var(--sombras-2);
 }
 
 /* Responsive */
