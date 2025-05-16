@@ -58,7 +58,7 @@ defineProps({
   font-family: inherit;
   line-height: 1.7;
   margin: 1.5rem 0;
-  color: #333;
+  color: var(--color-text);
   max-width: 750px;
 }
 
@@ -69,7 +69,7 @@ defineProps({
 .paragraph-container.with-highlight {
   padding: 1.5rem;
   background-color: #1abc9c28;
-  border-left: 4px solid #3498db;
+  border-left: 4px solid var(--color-primary);
   border-radius: 4px;
 }
 
@@ -83,7 +83,7 @@ defineProps({
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 0.75rem;
-  color: #3498db;
+  color: var(--color-primary);
 }
 
 .paragraph-content {
@@ -99,19 +99,19 @@ defineProps({
 }
 
 .paragraph-content ::v-deep(a) {
-  color: #3498db;
+  color: var(--color-primary);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease;
 }
 
 .paragraph-content ::v-deep(a:hover) {
-  border-bottom-color: #3498db;
+  border-bottom-color: var(--color-primary);
 }
 
 .paragraph-content ::v-deep(strong) {
   font-weight: 600;
-  color: #1abc9c;
+  color: var(--color-secundary);
 }
 
 .paragraph-divider {

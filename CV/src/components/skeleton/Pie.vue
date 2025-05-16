@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="contact-info">
-        <span>© 2025 Javier Gil</span>
+        <span class="sign">© 2025 Javier Gil</span>
         <span class="separator">—</span>
         <a href="mailto:javicraft14@gmail.com" class="footer-link">Mail</a>
         <span class="dot">•</span>
@@ -39,8 +39,8 @@ const cvDownloadLinkEN = "https://docs.google.com/document/d/1x49RGZPNeZimYRvpMl
 .footer {
   width: 100%;
   padding: 1.5rem 0;
-  background: linear-gradient(to left, #3498db, #1abc9c);
-  color: white;
+  background: linear-gradient(to left, var(--color-primary), var(--color-secundary));
+  color: var(--color-background);
   font-size: 0.875rem;
 }
 
@@ -59,6 +59,10 @@ const cvDownloadLinkEN = "https://docs.google.com/document/d/1x49RGZPNeZimYRvpMl
   gap: 0.5rem;
 }
 
+.sign {
+  color: var(--color-text);
+}
+
 .separator {
   margin: 0 0.25rem;
 }
@@ -69,7 +73,7 @@ const cvDownloadLinkEN = "https://docs.google.com/document/d/1x49RGZPNeZimYRvpMl
 }
 
 .footer-link {
-  color: #ffc86f;
+  color: var(--color-background);
   text-decoration: none;
   transition:
     color 0.2s ease,
@@ -84,12 +88,12 @@ const cvDownloadLinkEN = "https://docs.google.com/document/d/1x49RGZPNeZimYRvpMl
   height: 1px;
   bottom: -2px;
   left: 0;
-  background-color: #ffc86f;
+  background-color: var(--color-text);
   transition: width 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #f8f9fa;
+  color: var(--color-text);
 }
 
 .footer-link:hover::after {
@@ -102,7 +106,7 @@ const cvDownloadLinkEN = "https://docs.google.com/document/d/1x49RGZPNeZimYRvpMl
 }
 
 .vue-text {
-  color: #49ff58;
+  color: var(--vue-text);
   font-weight: 600;
 }
 

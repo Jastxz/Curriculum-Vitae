@@ -179,8 +179,8 @@ onUnmounted(() => {
   left: 0;
   height: 100vh;
   width: 250px;
-  background: linear-gradient(to bottom, #3498DB, #1ABC9C);
-  color: white;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-secundary));
+  color: var(--color-text);
   z-index: 1000;
   transition: transform 0.3s ease;
   display: flex;
@@ -221,26 +221,31 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   padding: 1rem 1.5rem;
-  color: #F8F9FA;
+  color: var(--link-color);
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .nav-link:hover {
-  background-color: #1abc9ca2;
-  color: white;
+  background-color: var(--selection-background);
+  color: var(--color-text);
 }
 
 .nav-link.active {
-  background-color: #1abc9ca2;
-  color: white;
-  border-left: 4px solid #ECF0F1;
+  background-color: var(--selection-background);
+  color: var(--color-text);
+  border-left: 4px solid var(--gris-palido);
 }
 
 .nav-icon {
   margin-right: 1rem;
   display: flex;
   align-items: center;
+  color: var(--color-background);
+}
+
+.nav-text {
+  color: var(--color-background);
 }
 
 .sidebar-footer {
@@ -254,12 +259,12 @@ onUnmounted(() => {
 }
 
 .social-link {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--link-color);
   transition: color 0.2s ease;
 }
 
 .social-link:hover {
-  color: #ffc86f;
+  color: var(--link-hover);
 }
 
 /* Estilos para el botón hamburguesa */
@@ -269,7 +274,7 @@ onUnmounted(() => {
   right: -3.5rem;
   width: 3rem;
   height: 3rem;
-  background-color: #3498DB;
+  background-color: var(--color-primary);
   border-radius: 0 4px 4px 0;
   display: flex;
   align-items: center;
@@ -289,7 +294,7 @@ onUnmounted(() => {
 .hamburger span {
   width: 100%;
   height: 2px;
-  background-color: white;
+  background-color: var(--link-color);
   transition: all 0.3s ease;
 }
 

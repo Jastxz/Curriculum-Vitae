@@ -5,17 +5,28 @@
       <h2 class="role">Desarrollador Backend</h2>
       <h3 class="motivation">'Con el tiempo suficiente, refactorizo cualquier sistema'</h3>
     </div>
+    <CambiarTema></CambiarTema>
   </header>
 </template>
 
 <script setup lang="ts">
+import CambiarTema from '../tools/CambiarTema.vue'
+import { onMounted } from 'vue'
+import { useThemeStore } from '@/stores/themeStore'
+
+const themeStore = useThemeStore()
+
+onMounted(() => {
+  themeStore.initTheme()
+})
 </script>
 
 <style scoped>
 .header {
+  display: inline-flex;
   width: 100%;
   padding: 2rem 0;
-  background: linear-gradient(to right, #3498DB, #1ABC9C);
+  background: linear-gradient(to right, var(--color-primary), var(--color-secundary));
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

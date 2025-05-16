@@ -34,6 +34,7 @@ import ContenidoInicio from '../home/ContenidoInicio.vue';
 main {
   min-height: calc(100vh - 200px); /* Ajustar según la altura del header y footer */
   padding: 2rem;
+  background-color: var(--color-background);
 }
 
 .section {
@@ -45,7 +46,7 @@ main {
 .section h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #3498DB;
+  color: var(--color-primary);
   position: relative;
 }
 
@@ -56,7 +57,7 @@ main {
   bottom: -0.75rem;
   width: 4rem;
   height: 3px;
-  background: linear-gradient(to right, #1ABC9C, #ECF0F1);
+  background: linear-gradient(to right, var(--color-secundary), var(--color-background));
 }
 
 /* Estilos responsivos */
