@@ -21,7 +21,7 @@
         <!-- Sección Habilidades -->
         <section id="skills" class="section">
           <h2>Habilidades</h2>
-          <!-- Contenido de la sección -->
+          <ContenidoHabilidades></ContenidoHabilidades>
         </section>
       </main>
 </template>
@@ -29,6 +29,7 @@
 <script setup lang="ts">
 import ContenidoInicio from '../home/ContenidoInicio.vue';
 import ContenidoExperiencia from '../home/ContenidoExperiencia.vue';
+import ContenidoHabilidades from '../home/ContenidoHabilidades.vue';
 </script>
 
 <style>
@@ -58,7 +59,7 @@ main {
   bottom: -0.75rem;
   width: 4rem;
   height: 3px;
-  background: linear-gradient(to right, var(--color-secundary), var(--color-background));
+  background: linear-gradient(to right, var(--color-secondary), var(--color-background));
 }
 
 /* Estilos responsivos */

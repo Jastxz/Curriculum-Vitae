@@ -39,7 +39,7 @@ const cvDownloadLinkEN = "https://docs.google.com/document/d/1x49RGZPNeZimYRvpMl
 .footer {
   width: 100%;
   padding: 1.5rem 0;
-  background: linear-gradient(to left, var(--color-primary), var(--color-secundary));
+  background: linear-gradient(to left, var(--color-primary), var(--color-secondary));
   color: var(--color-background);
   font-size: 0.875rem;
 }

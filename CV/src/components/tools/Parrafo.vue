@@ -111,7 +111,7 @@ defineProps({
 
 .paragraph-content ::v-deep(strong) {
   font-weight: 600;
-  color: var(--color-secundary);
+  color: var(--color-secondary);
 }
 
 .paragraph-divider {

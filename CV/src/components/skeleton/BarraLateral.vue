@@ -179,7 +179,7 @@ onUnmounted(() => {
   left: 0;
   height: 100vh;
   width: 250px;
-  background: linear-gradient(to bottom, var(--color-primary), var(--color-secundary));
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
   color: var(--color-text);
   z-index: 1000;
   transition: transform 0.3s ease;

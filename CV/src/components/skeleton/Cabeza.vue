@@ -26,7 +26,7 @@ onMounted(() => {
   display: inline-flex;
   width: 100%;
   padding: 2rem 0;
-  background: linear-gradient(to right, var(--color-primary), var(--color-secundary));
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

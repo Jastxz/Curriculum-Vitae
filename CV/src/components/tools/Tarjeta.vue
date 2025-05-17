@@ -212,12 +212,12 @@ defineProps({
 .card-footer {
   margin-top: 1.5rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--color-secundary);
+  border-top: 1px solid var(--color-secondary);
 }
 
 /* Temas */
 .theme-default {
-  border: 1px solid var(--color-secundary);
+  border: 1px solid var(--color-secondary);
 }
 
 .theme-primary {
@@ -229,7 +229,7 @@ defineProps({
 }
 
 .theme-accent {
-  background: linear-gradient(to bottom right, var(--color-primary), var(--color-secundary));
+  background: linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));
   border: 1px solid var(--color-text);
 }
 
