@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="contact-info">
-        <span class="sign">© 2025 Javier Gil</span>
+        <span class="sign">© {{ currentYear }} Javier Gil</span>
         <span class="separator">—</span>
         <a href="mailto:javicraft14@gmail.com" class="footer-link">Mail</a>
         <span class="dot">•</span>
@@ -30,6 +30,9 @@
 </template>
 
 <script setup lang="ts">
+// Constante para mostrar el año actual siempre
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
 // Enlace de descarga de CV
 const cvDownloadLinkES = "https://docs.google.com/document/d/1BpEp3Xwy3bsel0OpNQPGe7oAS4NTftIHgIlcR-y485Y/edit?usp=drive_link"
 const cvDownloadLinkEN = "https://docs.google.com/document/d/1x49RGZPNeZimYRvpMlToUlk6E00t9MUMSBUlMPuycB4/edit?usp=drive_link"

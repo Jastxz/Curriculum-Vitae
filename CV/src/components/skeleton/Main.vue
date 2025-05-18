@@ -15,7 +15,7 @@
         <!-- Sección Proyectos -->
         <section id="projects" class="section">
           <h2>Proyectos</h2>
-          <!-- Contenido de la sección -->
+          <ContenidoProyectos></ContenidoProyectos>
         </section>
 
         <!-- Sección Habilidades -->
@@ -29,6 +29,7 @@
 <script setup lang="ts">
 import ContenidoInicio from '../home/ContenidoInicio.vue';
 import ContenidoExperiencia from '../home/ContenidoExperiencia.vue';
+import ContenidoProyectos from '../home/ContenidoProyectos.vue';
 import ContenidoHabilidades from '../home/ContenidoHabilidades.vue';
 </script>
 
