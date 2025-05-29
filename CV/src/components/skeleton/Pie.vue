@@ -24,7 +24,7 @@
           <span>Download CV EN</span>
         </a>
       </div>
-      <div class="made-with">Hecho con <span class="vue-text">Vue</span></div>
+      <div class="made-with">{{ $t('footer.made') }}<span class="vue-text">Vue</span></div>
     </div>
   </footer>
 </template>

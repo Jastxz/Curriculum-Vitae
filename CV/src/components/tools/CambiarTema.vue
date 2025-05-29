@@ -40,7 +40,7 @@ onMounted(() => {
   padding: 5px;
   border-radius: 50%;
   border: none;
-  background: var(--color-secondary);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;

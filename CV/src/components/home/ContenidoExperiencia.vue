@@ -5,29 +5,26 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import Tarjeta from '../tools/Tarjeta.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
 
 // Títulos
-const trabajoActual = 'Delivery Analyst - Deloitte'
-const fullLeap = 'Desarrollador full stack - EasyLeapp®'
-const becaLeap = 'Becario - EasyLeapp®'
+const trabajoActual = computed(() => t('experience.actual'))
+const fullLeap = computed(() => t('experience.fullL'))
+const becaLeap = computed(() => t('experience.becL'))
 
 // Subtítulos
-const tiempoLugarActual = '03/2023 – Actualidad | Sevilla, Andalucía, España'
-const tiempoLugarLeap = '06/2022 – 10/2022 | Sevilla, Andalucía, España'
-const tiempoLugarLeapBeca = '12/2021 – 06/2022 | Sevilla, Andalucía, España'
+const tiempoLugarActual = computed(() => t('experience.tiempoA'))
+const tiempoLugarLeap = computed(() => t('experience.tiempoL'))
+const tiempoLugarLeapBeca = computed(() => t('experience.tiempoLB'))
 
 // Textos de los párrafos
-const descripciónActual =
-  'Como desarrollador Full Stack, en mi actual posición he destacado en liderazgo, relación con cliente, proactividad y apoyo a mis compañeros de proyecto. \
-  Continúo formándome y aprendiendo del mismo, pero mi desempeño técnico ha sido completamente satisfactorio; adaptándome así, rápidamente, a un entorno \
-  tecnológico tan cambiante y multidisciplinar como lo es el actual. Resumiendo brevemente, hago uso técnico de Java Spring Boot, Angular, PostgreSQL y AWS Cloud.'
-const descripciónLeap =
-  'Como desarrollador Full Stack, se me puso a cargo de la reestructuración de un CRM basándome en una plantilla de funcionalidades preestablecidas por \
-  la directiva de la StartUp. Llevé a cabo la tarea con un resultado más que satisfactorio según la opinión de mis responsables. En el proyecto se hacía \
-  uso de una arquitectura monolítica con PHP Laravel, JQuery y Vue, apoyado en una base de datos SQL básica.'
-const descripciónLeapBeca =
-  'Como becario se me formó en el uso de Laravel y Vue para que fuera capaz de comenzar la reestructuración del CRM de la empresa.'
+const descripciónActual = computed(() => t('experience.descA'))
+const descripciónLeap = computed(() => t('experience.descL'))
+const descripciónLeapBeca = computed(() => t('experience.descLB'))
 </script>
 
 <style></style>

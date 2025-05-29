@@ -1,0 +1,68 @@
+{
+    "main": {
+      "start": "Start",
+      "experience": "Experience",
+      "projects": "Projects",
+      "skills": "Skills"
+    },
+    "header": {
+      "developer": "Backend Developer0",
+      "slogan": "'With enough time, I refactor any system'"
+    },
+    "footer": {
+      "made": "Made with "
+    },
+    "start": {
+      "intro": "Greetings. I am Javier Gil Blázquez, graduated in Computer Engineering - Information Technology with a major in computing from the University of Seville. I currently work at Deloitte as a FullStack Developer in a maintenance and development team supporting another large company.",
+      "hobbies": "I have many and varied hobbies. I like to learn and sometimes I do deep research on some topics; among these, some mathematical or computational problems stand out, such as prime numbers or the P=NP problem, although I must confess that I would like to dedicate more research time to them. I also have a personal interest in AI and its fundamental conception. Beyond that related to computation and mathematics, I also like things about normal people, such as playing videogames, series or movies. I also like to consume stories through books. Talking about the more physical side, I like to practice certain sports whenever I have free time and have been able to prepare for the session. Finally, in recent times I have started to refresh and develop my musical skills, as I would like to be able to enjoy some scores or songs more actively.",
+      "stacks": "In the technology stacks section, I am currently interested in several tools for backend development and I know my way around several frontend, cloud, devops and DB technologies. Focusing in this paragraph more on backend technology, which is the one I am most interested in, I have reviewed the Java Spring Boot and also Golang and partners frameworks. As far as Spring Boot is concerned, the support project where I am part of, uses this technology and I am in charge of carrying out a migration from Spring 2.7 to 3.3, which is currently our best option to keep our microservices up to date. I am also developing some more projects with this framework to check how it can be useful for an idea I have in development. In the same way, with Golang I intend to make a similar replica of the same system that I intend to build with Spring Boot, but I still have to give myself more time to learn this language and its frameworks. Apart from that related to Java or Go, I also feel partly inclined to the handling of databases, either SQL or NoSQL. In this aspect, I work with PostgreSQL and I have the official MongoDB certification.",
+      "otherStacks": "Continuing with technologies or stacks, I would like to comment briefly on my perspective or experience with other tools used in this trade. Starting by referencing this web page. This page is created with some HTML5 code, CSS and components developed with Vue in its version 3 and accompanied by the Typescript(TS) language; the decision to use TS is because I prefer the clarity and order it delivers compared to its big brother, or parent, Javascript(JS). I also work with Angular and TS in support of the Deloitte project. In addition, and I take this opportunity to link to the other technologies, we use Jenkins for deployments, GitHub for repos management and the whole project is integrated with AWS, so I am no stranger to using lambdas, Gluejobs or the AWS console itself.",
+      "bye": "I think I have already exposed all the acceptably relevant information about me for the purpose of this website. If you would like to know anything else, I invite you to ask me. Thank you for your interest and I have a good day.",
+      "descripcionUS": "University of Seville logo",
+      "descripcionDT": "Deloitte's logo",
+      "descripcionJ": "Java programming language logo",
+      "descripcionGo": "Go programming language logo",
+      "descripcionPSQL": "PostgreSQL BBDD logo",
+      "descripcionMDB": "MongoDB de Associate Developer certification image",
+      "descripcionSun": "Smiling Sun face"
+    },
+    "experience": {
+      "actual": "Delivery Analyst - Deloitte",
+      "fullL": "Full stack developer - EasyLeapp®",
+      "becL": "Traineé - EasyLeapp®",
+      "tiempoA": "03/2023 – Now | Seville, Andalusia, Spain",
+      "tiempoL": "06/2022 – 10/2022 | Seville, Andalusia, Spain",
+      "tiempoLB": "12/2021 – 06/2022 | Seville, Andalusia, Spain",
+      "descA": "As a Full Stack developer, in my current position I have excelled in leadership, customer relations, proactivity and support to my project partners. I continue to train and learn from it, but my technical performance has been completely satisfactory; adapting quickly to a technological environment as changing and multidisciplinary as the current one. Briefly summarizing, I make technical use of Java Spring Boot, Angular, PostgreSQL and AWS Cloud.",
+      "descL": "As a Full Stack developer, I was put in charge of restructuring a CRM based on a template of functionalities pre-established by the StartUp's management. I carried out the task with a more than satisfactory result according to the opinion of my managers. The project made use of a monolithic architecture with PHP Laravel, JQuery and Vue, supported by a basic SQL database.",
+      "descLB": "As an intern I was trained in the use of Laravel and Vue so that I was able to start restructuring the company's CRM."
+    },
+    "projects": {
+      "portable": "Zip with portable for Windows",
+      "btfg": "State search in adversarial games implemented in Haskell and applied to some games.",
+      "bah": "Application for visualising the representation of the 255 cellular automatas available in two dimensions.",
+      "baj": "Application for visualising the representation of some cellular automatas available in two dimensions.",
+      "dtfg": "This project is an application with which you can play some classic games against the machine. The aim of the project was to create the user interface and the engine by hand from scratch or from the bare minimum. In the case of the UI, I relied on a library for drawing shapes and letters, which is why the GUI looks so limited or crude. The game engine is 100% created from scratch. I adapted the classic MiniMax adversarial search algorithm in its Negamax version with some added improvements depending on the difficulty level the user wants to choose.",
+      "dah": "This application handles the same style as my game application with opponent search. In this way, I reused what I had already developed in this sense. On this occasion, the objective was to be able to visualise any of the 255 rules for the generation of cellular automata; either starting from a random environment or from a classic controlled environment.",
+      "daj": "This application is a sister application to the one with the same name but developed with Haskell. My goal was to replicate the same usage to make comparisons in design, implementation and computational power between the two. The main differences are in the user interface, which this time uses the Java Swing library, which nowadays is a bit obsolete if I am not mistaken, and that this application only has some hand-implemented rules."
+    },
+    "skills": {
+      "tituloB": "Soft skills",
+      "tituloD": "Hard skills",
+      "blandasS": "Solvency: I have proven to be able to solve the problems presented by the project. Even under pressure.",
+      "blandasP": "Proactive: I am responsible for my working time and I know what I have to do. And if I don't know my target or have problems with priorities, I rely on my team leader.",
+      "blandasT": "Tenacious: I do not give in easily to project problems and I have a high tolerance for frustration, which allows me to remain calm in stressful and tense situations.",
+      "blandasF": "Flexible: I am able to adapt to the project and its needs. Whether the project is a group or individual project, has older or newer technologies or needs complete refactoring, maintenance or simple development.",
+      "blandasB": "Good practices: I am aware of good practices when developing and collaborating in teams. I try to make my code as clean as possible from the start and then refactor, or propose refactoring, if necessary. I have used Agile practices with Jira and ServiceNow.",
+      "blandasI": "Languages: Spanish native. English B2.",
+      "durasL": "Programming languages: Java(high), Python(medium), Go(low), PHP(low), TypeScript/Javascript(medium).",
+      "durasF": "Frameworks and libraries: Spring(medium), Laravel(low).",
+      "durasB": "Data bases: MySQL(medium), PostgreSQL(medium), MongoDB(high).",
+      "durasS": "BBDD managing systems: Hibernate(medium).",
+      "durasAu": "Authentication and authorization: OAuth(low), JWT(low).",
+      "durasAP": "APIs and microservices: RESTful APIs(medium).",
+      "durasD": "APIs development: Swagger(medium), OpenAPI(medium).",
+      "durasH": "Development tools: Git(medium), Kubernetes(low), Jenkins(low)."
+    }
+  }
+  

@@ -15,7 +15,7 @@
         target="_blank"
         class="repo-link"
         href="https://drive.google.com/file/d/1uzNimWJyKeBqCm5lWbp-cOMB7BjCebLK/view?usp=drive_link"
-        >Zip con portable para Windows</a
+        >{{ $t('projects.portable') }}</a
       >
     </template>
   </Tarjeta>
@@ -49,6 +49,10 @@
 
 <script setup lang="ts">
 import Tarjeta from '../tools/Tarjeta.vue'
+import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
+
+const { t, locale } = useI18n()
 
 // Títulos
 const tfg = 'Adversarial-Search-Haskell'
@@ -56,27 +60,14 @@ const automatasHaskell = 'Fractals-with-celular-automatas - Haskell'
 const automatasJava = 'Fractals-with-celular-automatas - Java'
 
 // Subtítulos
-const breveTfg =
-  'Búsqueda de estados en juegos con adversario implementado en Haskell y aplicado a algunos juegos.'
-const breveAH =
-  'Aplicación que permite visualizar la representación de los 255 autómatas celulares disponibles en dos dimensiones.'
-const breveAJ =
-  'Aplicación que permite visualizar la representación de algunos autómatas celulares disponibles en dos dimensiones.'
+const breveTfg = computed(() => t('projects.btfg'))
+const breveAH = computed(() => t('projects.bah'))
+const breveAJ = computed(() => t('projects.baj'))
 
 // Textos de los párrafos
-const descripciónTfg =
-  'Este proyecto es una aplicación con la que se puede jugar a algunos juegos clásicos contra la máquina. La gracia del proyecto era crear la interfaz \
-    de usuario y el motor a mano desde cero o partiendo de lo mínimo. En el caso de la interfaz, me apoyé en una librería de dibujo de formas y letras, \
-    por eso la GUI se ve tan limitada o bruta. El motor de juego está creado desde cero al 100%. Adapté el algoritmo clásico de búsqueda con adversario \
-    MiniMax en su versión Negamax con algunas mejoras añadidas dependiendo del nivel de dificultad que quisiera elegir el usuario.'
-const descripciónAH =
-  'Esta aplicación maneja el mismo estilo que mi aplicación de juegos con búsqueda de adversario. De esta manera reaprovechaba lo que ya tenía desarrollado \
-    en este sentido. En esta ocasión, el objetivo era poder visualizar cualquiera de las 255 reglas para la generación de autómatas celulares; ya fuera \
-    partiendo desde un entorno aleatorio o desde un entorno controlado clásico.'
-const descripciónAJ =
-  'Esta aplicación es hermana de la que tiene su mismo nombre pero desarrollada con Haskell. Mi objetivo era replicar el mismo uso para hacer comparativas \
-    en el diseño, implementación y potencia de computación entre ambas. Las diferencias principales se encuentran en la interfaz de usuario, que esta vez usa \
-    la librería Java Swing, que a día de hoy está un poco obsoleta si no me equivoco, y que esta aplicación solo tiene implementadas algunas reglas a mano.'
+const descripciónTfg = computed(() => t('projects.dtfg'))
+const descripciónAH = computed(() => t('projects.dah'))
+const descripciónAJ = computed(() => t('projects.daj'))
 </script>
 
 <style>

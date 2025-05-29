@@ -7,6 +7,7 @@
   --negro: rgb(56, 56, 56);
   --turquesa-2: #1abc9ca2;
   --naranja-suave-2: #ffc86f8a;
+  --azul-2: #3498db7e;
   --vue-color: #49ff58;
   --verde-oscuro: rgb(0, 104, 38);
   --gris-oscuro: #5e5e5e;
@@ -19,6 +20,7 @@
   --link-hover: var(--naranja-suave);
   --selection-color: var(--gris-palido);
   --selection-background: var(--turquesa-2);
+  --selection-background-2: var(--azul-2);
   --vue-text: var(--vue-color);
   --sombras-1: rgba(0, 0, 0, 0.479);
   --sombras-2: rgba(0, 0, 0, 0.322);
@@ -34,6 +36,7 @@
   --negro: rgb(56, 56, 56);
   --turquesa-2: #1abc9ca2;
   --naranja-suave-2: #ffc86f8a;
+  --azul-2: #3498db7e;
   --vue-color: #49ff58;
   --verde-oscuro: rgb(0, 104, 38);
   --gris-oscuro: #5e5e5e;
@@ -46,6 +49,7 @@
   --link-hover: var(--turquesa);
   --selection-color: var(--gris-palido);
   --selection-background: var(--naranja-suave-2);
+  --selection-background-2: var(--azul-2);
   --vue-text: var(--verde-oscuro);
   --sombras-1: rgb(255, 255, 255);
   --sombras-2: rgba(255, 255, 255, 0.822);

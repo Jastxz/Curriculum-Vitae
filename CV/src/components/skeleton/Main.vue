@@ -2,25 +2,25 @@
     <main>
         <!-- Sección Inicio -->
         <section id="home" class="section">
-          <h2>Inicio</h2>
+          <h2>{{ $t('main.start') }}</h2>
           <ContenidoInicio></ContenidoInicio>
         </section>
 
         <!-- Sección Experiencia -->
         <section id="experience" class="section">
-          <h2>Experiencia</h2>
+          <h2>{{ $t('main.experience') }}</h2>
           <ContenidoExperiencia></ContenidoExperiencia>
         </section>
 
         <!-- Sección Proyectos -->
         <section id="projects" class="section">
-          <h2>Proyectos</h2>
+          <h2>{{ $t('main.projects') }}</h2>
           <ContenidoProyectos></ContenidoProyectos>
         </section>
 
         <!-- Sección Habilidades -->
         <section id="skills" class="section">
-          <h2>Habilidades</h2>
+          <h2>{{ $t('main.skills') }}</h2>
           <ContenidoHabilidades></ContenidoHabilidades>
         </section>
       </main>

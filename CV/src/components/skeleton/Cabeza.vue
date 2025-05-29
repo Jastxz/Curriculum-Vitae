@@ -2,14 +2,18 @@
   <header class="header">
     <div class="header-content">
       <h1 class="name">Javier Gil Blázquez</h1>
-      <h2 class="role">Desarrollador Backend</h2>
-      <h3 class="motivation">'Con el tiempo suficiente, refactorizo cualquier sistema'</h3>
+      <h2 class="role">{{ $t('header.developer') }}</h2>
+      <h3 class="motivation">{{ $t('header.slogan') }}</h3>
     </div>
-    <CambiarTema></CambiarTema>
+    <div class="gadgets">
+      <CambiarTema></CambiarTema>
+      <SelectorLenguaje></SelectorLenguaje>
+    </div>
   </header>
 </template>
 
 <script setup lang="ts">
+import SelectorLenguaje from '../tools/SelectorLenguaje.vue'
 import CambiarTema from '../tools/CambiarTema.vue'
 import { onMounted } from 'vue'
 import { useThemeStore } from '@/stores/themeStore'
@@ -34,7 +38,7 @@ onMounted(() => {
 .header-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 0 0 6rem;
   text-align: center;
 }
 
@@ -58,6 +62,12 @@ onMounted(() => {
   font-style: italic;
   margin: 0.5rem 0 0;
   opacity: 0.9;
+}
+
+.gadgets {
+  align-content: flex-start;
+  justify-items: center;
+  padding-right: 8px;
 }
 
 /* Estilos responsivos */

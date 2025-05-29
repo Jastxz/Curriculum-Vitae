@@ -1,0 +1,67 @@
+{
+  "main": {
+    "start": "Inicio",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "skills": "Habilidades"
+  },
+  "header": {
+    "developer": "Desarrollador Backend",
+    "slogan": "'Con el tiempo suficiente, refactorizo cualquier sistema'"
+  },
+  "footer": {
+    "made": "Hecho con "
+  },
+  "start": {
+    "intro": "Saludos. Soy Javier Gil Blázquez, graduado en Ingeniería Informática - Tecnologías Informáticas con mención en computación por la Universidad de Sevilla. Actualmente trabajo en Deloitte como FullStack Developer en un equipo de mantenimiento y desarrollo dando soporte a otra gran empresa.",
+    "hobbies": "Tengo muchos y variados hobbies. Me gusta aprender y a veces investigo profundamente sobre algunos temas; destacando entre estos algunos problemas matemáticos o computacionales, como pueden ser los números primos o el problema P=NP, aunque he de confesar que me gustaría dedicarles más tiempo de investigación. Así mismo, también siento interés personal por la IA y su concepción fundamental. Más allá de aquello relacionado con la computación y matemáticas también me gustan cosas de gente normal, como jugar videojuegos, las series o el cine. También me gusta consumir historias a través de libros. Hblando del apartado más físico, me gusta practicar determinados deportes siempre que tengo tiempo libre y he podido prepararme para la sesión. Finalmente, en estos últimos tiempos he comenzado a refrescar y desarrollar mis dotes musicales, ya que me gustaría ser capaz de disfrutar algunas partituras o canciones de forma más activa.",
+    "stacks": "En el apartado de stacks tecnológicos, actualmente me interesan varias herramientas para el desarrollo backend y sé manejarme con varias tecnologías frontend, cloud, devops y BBDD. Enfocándome en este párrafo más en la tecnología del backend, que es en la que tengo mayor interés web, he revisado los frameworks de Java Spring Boot y también Golang y asociados. En lo que a Spring Boot se refiere, el proyecto de soporte del que formo parte usa esta tecnología y me estoy encargando de llevar a cabo una migración desde Spring 2.7 a 3.3, que es actualmente nuestra mejor opción para mantener nuestros microservicios actualizados. También estoy desarrollando algún proyectillo más con este framework para revisar qué tal puede servirme para una idea que tengo en desarrollo. De la misma forma, con Golang tengo intenciones de hacer una réplica parecida del mismo sistema que pretendo levantar con Spring Boot, pero aún tengo que darme más tiempo de aprendizaje con este lenguaje y sus frameworks. A parte de aquello relacionado con Java o Go, también me siento inclinado en parte al manejo de BBDD, ya sean SQL o NoSQL. En este aspecto, trabajo con PostgreSQL y tengo la certificación oficial de MongoDB.",
+    "otherStacks": "Continuando con las tecnologías o stacks, me gustaría comentar brevemente mi perspectiva o experiencia con otras herramientas que se usan en este oficio. Empezando por referenciar esta misma página web. Esta página está creada con un poco de código HTML5, CSS y componentes desarrollados con Vue en su versión 3 y acompañado del lenguaje Typescript(TS); la decisión de usar TS es porque prefiero la claridad y orden que entrega en comparación a su hermano mayor, o padre, Javascript(JS). También trabajo con Angular y TS en el soporte del proyecto de Deloitte. Además, y aprovecho para enlazar con el resto de tecnologías, usamos Jenkins para los despliegues, GitHub para el manejo de repos y todo el proyecto está integrado con AWS, por lo que no soy ajeno al uso de lambdas, Gluejobs o la propia consola de AWS.",
+    "bye": "Creo que ya he expuesto toda la información aceptablemente relevante sobre mí para el propósito de esta web. Si gustas de saber algo más, te invito a preguntarme. Gracias por tu interés y te deseo buen día.",
+    "descripcionUS": "Logo de la Universidad de Sevilla",
+    "descripcionDT": "Logo de la empresa Deloitte",
+    "descripcionJ": "Logo del lenguaje de programación Java",
+    "descripcionGo": "Logo del lenguaje de programación Go",
+    "descripcionPSQL": "Logo de la BBDD PostgreSQL",
+    "descripcionMDB": "Logo de la certificación de Associate Developer de BBDD MongoDB",
+    "descripcionSun": "Imagen de un Sol con cara sonriente"
+  },
+  "experience": {
+    "actual": "Delivery Analyst - Deloitte",
+    "fullL": "Desarrollador full stack - EasyLeapp®",
+    "becL": "Becario - EasyLeapp®",
+    "tiempoA": "03/2023 – Actualidad | Sevilla, Andalucía, España",
+    "tiempoL": "06/2022 – 10/2022 | Sevilla, Andalucía, España",
+    "tiempoLB": "12/2021 – 06/2022 | Sevilla, Andalucía, España",
+    "descA": "Como desarrollador Full Stack, en mi actual posición he destacado en liderazgo, relación con cliente, proactividad y apoyo a mis compañeros de proyecto. Continúo formándome y aprendiendo del mismo, pero mi desempeño técnico ha sido completamente satisfactorio; adaptándome así, rápidamente, a un entorno tecnológico tan cambiante y multidisciplinar como lo es el actual. Resumiendo brevemente, hago uso técnico de Java Spring Boot, Angular, PostgreSQL y AWS Cloud.",
+    "descL": "Como desarrollador Full Stack, se me puso a cargo de la reestructuración de un CRM basándome en una plantilla de funcionalidades preestablecidas por la directiva de la StartUp. Llevé a cabo la tarea con un resultado más que satisfactorio según la opinión de mis responsables. En el proyecto se hacía uso de una arquitectura monolítica con PHP Laravel, JQuery y Vue, apoyado en una base de datos SQL básica.",
+    "descLB": "Como becario se me formó en el uso de Laravel y Vue para que fuera capaz de comenzar la reestructuración del CRM de la empresa."
+  },
+  "projects": {
+    "portable": "Zip con portable para Windows",
+    "btfg": "Búsqueda de estados en juegos con adversario implementado en Haskell y aplicado a algunos juegos.",
+    "bah": "Aplicación que permite visualizar la representación de los 255 autómatas celulares disponibles en dos dimensiones.",
+    "baj": "Aplicación que permite visualizar la representación de algunos autómatas celulares disponibles en dos dimensiones.",
+    "dtfg": "Este proyecto es una aplicación con la que se puede jugar a algunos juegos clásicos contra la máquina. La gracia del proyecto era crear la interfaz de usuario y el motor a mano desde cero o partiendo de lo mínimo. En el caso de la interfaz, me apoyé en una librería de dibujo de formas y letras, por eso la GUI se ve tan limitada o bruta. El motor de juego está creado desde cero al 100%. Adapté el algoritmo clásico de búsqueda con adversario MiniMax en su versión Negamax con algunas mejoras añadidas dependiendo del nivel de dificultad que quisiera elegir el usuario.",
+    "dah": "Esta aplicación maneja el mismo estilo que mi aplicación de juegos con búsqueda de adversario. De esta manera reaprovechaba lo que ya tenía desarrollado en este sentido. En esta ocasión, el objetivo era poder visualizar cualquiera de las 255 reglas para la generación de autómatas celulares; ya fuera partiendo desde un entorno aleatorio o desde un entorno controlado clásico.",
+    "daj": "Esta aplicación es hermana de la que tiene su mismo nombre pero desarrollada con Haskell. Mi objetivo era replicar el mismo uso para hacer comparativas en el diseño, implementación y potencia de computación entre ambas. Las diferencias principales se encuentran en la interfaz de usuario, que esta vez usa la librería Java Swing, que a día de hoy está un poco obsoleta si no me equivoco, y que esta aplicación solo tiene implementadas algunas reglas a mano."
+  },
+  "skills": {
+    "tituloB": "Habilidades blandas",
+    "tituloD": "Habilidades duras",
+    "blandasS": "Solvencia: He demostrado ser capaz de resolver los problemas que presentaba el proyecto. Aún bajo presión.",
+    "blandasP": "Proactivo: Soy responsable de mi tiempo de trabajo y sé lo que tengo que hacer. Y si no conozco mi objetivo o tengo problemas con las prioridades, me apoyo en mi jefe de equipo.",
+    "blandasT": "Tenaz: No cedo fácilmente ante los problemas que presente el proyecto y tengo gran tolerancia a la frustración, lo que me permite mantener la calma en situaciones de estrés y tensión.",
+    "blandasF": "Flexible: Soy capaz de adaptarme al proyecto y sus necesidades. Así sea que el proyecto sea en grupo o individual, tenga tecnologías más antiguas o más actuales o necesite una refactorización completa, mantenimiento o simple desarrollo.",
+    "blandasB": "Buenas prácticas: Soy conocedor de buenas prácticas desarrollando y colaborando en equipo. Procuro que mi código sea lo más limpio posible de partida y luego refactorizo, o propongo refactorizar, si es necesario. He usado prácticas Ágiles con Jira y ServiceNow.",
+    "blandasI": "Idiomas: Español nativo. Inglés B2.",
+    "durasL": "Lenguajes de programación: Java(alto), Python(medio), Go(bajo), PHP(bajo), TypeScript/Javascript(medio).",
+    "durasF": "Frameworks y bibliotecas: Spring(medio), Laravel(bajo).",
+    "durasB": "Bases de datos: MySQL(medio), PostgreSQL(medio), MongoDB(alto).",
+    "durasS": "Sistemas de gestión de BBDD: Hibernate(medio).",
+    "durasAu": "Autenticación y autorización: OAuth(bajo), JWT(bajo).",
+    "durasAP": "APIs y microservicios: RESTful APIs(medio).",
+    "durasD": "Desarrollo de APIs: Swagger(medio), OpenAPI(medio).",
+    "durasH": "Herramientas de desarrollo: Git(medio), Kubernetes(bajo), Jenkins(bajo)."
+  }
+}
