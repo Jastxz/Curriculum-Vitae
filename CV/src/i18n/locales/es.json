@@ -38,13 +38,16 @@
     "descLB": "Como becario se me formó en el uso de Laravel y Vue para que fuera capaz de comenzar la reestructuración del CRM de la empresa."
   },
   "projects": {
+    "tryDemo": "Probar Demo",
     "portable": "Zip con portable para Windows",
     "btfg": "Búsqueda de estados en juegos con adversario implementado en Haskell y aplicado a algunos juegos.",
     "bah": "Aplicación que permite visualizar la representación de los 255 autómatas celulares disponibles en dos dimensiones.",
     "baj": "Aplicación que permite visualizar la representación de algunos autómatas celulares disponibles en dos dimensiones.",
+    "bpj": "Un microservicio Spring Boot que proporciona herramientas computacionales para trabajar con números primos.",
     "dtfg": "Este proyecto es una aplicación con la que se puede jugar a algunos juegos clásicos contra la máquina. La gracia del proyecto era crear la interfaz de usuario y el motor a mano desde cero o partiendo de lo mínimo. En el caso de la interfaz, me apoyé en una librería de dibujo de formas y letras, por eso la GUI se ve tan limitada o bruta. El motor de juego está creado desde cero al 100%. Adapté el algoritmo clásico de búsqueda con adversario MiniMax en su versión Negamax con algunas mejoras añadidas dependiendo del nivel de dificultad que quisiera elegir el usuario.",
     "dah": "Esta aplicación maneja el mismo estilo que mi aplicación de juegos con búsqueda de adversario. De esta manera reaprovechaba lo que ya tenía desarrollado en este sentido. En esta ocasión, el objetivo era poder visualizar cualquiera de las 255 reglas para la generación de autómatas celulares; ya fuera partiendo desde un entorno aleatorio o desde un entorno controlado clásico.",
-    "daj": "Esta aplicación es hermana de la que tiene su mismo nombre pero desarrollada con Haskell. Mi objetivo era replicar el mismo uso para hacer comparativas en el diseño, implementación y potencia de computación entre ambas. Las diferencias principales se encuentran en la interfaz de usuario, que esta vez usa la librería Java Swing, que a día de hoy está un poco obsoleta si no me equivoco, y que esta aplicación solo tiene implementadas algunas reglas a mano."
+    "daj": "Esta aplicación es hermana de la que tiene su mismo nombre pero desarrollada con Haskell. Mi objetivo era replicar el mismo uso para hacer comparativas en el diseño, implementación y potencia de computación entre ambas. Las diferencias principales se encuentran en la interfaz de usuario, que esta vez usa la librería Java Swing, que a día de hoy está un poco obsoleta si no me equivoco, y que esta aplicación solo tiene implementadas algunas reglas a mano.",
+    "dpj": "Este microservicio es una API que tengo desarrollada para dar soporte a ciertas inquietudes con los números primos, así como intentar arrojar otra persectiva sobre los mismos. Supongo que me gusta contemplar las cosas desde varios puntos de vista. Este proyecto está construido con Java 21 y Spring Boot 3, y se ha tenido en cuenta el posible número de peticiones y la necesidad de potencia de cálculo computacional. Está ajustado para consumir unos recursos aceptablemente bajos en el servidor en el que está actualmente alojado. Y cuenta con un límite en el número de peticiones para evitar dar pie a ataques de saturación de llamadas."
   },
   "skills": {
     "tituloB": "Habilidades blandas",
@@ -63,5 +66,47 @@
     "durasAP": "APIs y microservicios: RESTful APIs(medio).",
     "durasD": "Desarrollo de APIs: Swagger(medio), OpenAPI(medio).",
     "durasH": "Herramientas de desarrollo: Git(medio), Kubernetes(bajo), Jenkins(bajo)."
+  },
+  "primeTools": {
+    "title": "Herramientas de Números Primos",
+    "description": "Microservicio para visualizar y trabajar con números primos",
+    "polarTab": "Coordenadas Polares",
+    "diffTab": "Diferencias",
+    "polarInputLabel": "Número de primos para coordenadas polares:",
+    "diffInputLabel": "Número de primos para calcular diferencias:",
+    "inputPlaceholder": "Ej: 100",
+    "searchPlaceholder": "Buscar en tabla...",
+    "calculate": "Calcular",
+    "error": "Error",
+    "clear": "Limpiar",
+    "polarResults": "Coordenadas Polares de Números Primos",
+    "dataPreview": "Vista previa de datos",
+    "points": "puntos",
+    "position": "Posición",
+    "prime": "Número Primo",
+    "difference": "Diferencia",
+    "andMore": "y {count} más",
+    "primes": "Números Primos",
+    "differences": "Diferencias",
+    "unknownError": "Error desconocido",
+    "repetitions": "Veces que se repite",
+    "controls": "Controles",
+    "wheelZoom": "Rueda = Zoom",
+    "arrowsGrid": "Flechas = Grid",
+    "reset": "= Reset",
+    "zoom": "Zoom",
+    "gridSize": "Grid",
+    "connectionError": "Error de conexión.",
+    "badRequest": "Petición inválida. Verifica que el número ingresado no es 0 ni negativo.",
+    "tooManyRequests": "Demasiadas peticiones. Espera un minuto.",
+    "serverError": "Error interno del servidor.",
+    "serviceUnavailable": "Servicio no disponible o recursos insuficientes.",
+    "httpError": "Error HTTP"
+  },
+  "modal": {
+    "close": "Cerrar"
+  },
+  "table": {
+    "items": "elementos"
   }
 }

@@ -25,6 +25,9 @@
   --sombras-1: rgba(0, 0, 0, 0.479);
   --sombras-2: rgba(0, 0, 0, 0.322);
   --bordeado-palido: var(--gris-palido);
+  --background-button: var(--naranja-suave);
+  --color-button: var(--color-text);
+  --sombra-hover-button: var(--color-text);
 }
 
 [data-theme='dark'] {
@@ -54,6 +57,9 @@
   --sombras-1: rgb(255, 255, 255);
   --sombras-2: rgba(255, 255, 255, 0.822);
   --bordeado-palido: var(--gris-oscuro);
+  --background-button: var(--azul-2);
+  --color-button: var(--naranja-suave);
+  --sombra-hover-button: var(--naranja-suave-2);
 }
 
 *,

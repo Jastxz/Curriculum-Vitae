@@ -45,12 +45,41 @@
       >
     </template>
   </Tarjeta>
+  <Tarjeta :title="primosJava" :subtitle="brevePJ">
+    <template #default>
+      {{ descripciónPJ }}
+    </template>
+    <template #footer>
+      <a
+        href="https://github.com/Jastxz/microPrimeNumbers"
+        target="_blank"
+        class="repo-link"
+        >GitHub repo</a
+      >
+      <br>
+      <button @click="openPrimeToolsModal" class="demo-button">
+        {{ $t('projects.tryDemo') }}
+      </button>
+    </template>
+  </Tarjeta>
+
+  <ModalProyecto
+    :is-open="isPrimeToolsModalOpen"
+    :title="$t('primeTools.title')"
+    :subtitle="$t('primeTools.description')"
+    size="xlarge"
+    @close="closePrimeToolsModal"
+  >
+    <VisualizadorPrimos />
+  </ModalProyecto>
 </template>
 
 <script setup lang="ts">
 import Tarjeta from '../tools/Tarjeta.vue'
+import ModalProyecto from '../tools/ModalProyecto.vue'
+import VisualizadorPrimos from '../projects/VisualizadorPrimos.vue'
 import { useI18n } from 'vue-i18n'
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 
 const { t, locale } = useI18n()
 
@@ -58,16 +87,30 @@ const { t, locale } = useI18n()
 const tfg = 'Adversarial-Search-Haskell'
 const automatasHaskell = 'Fractals-with-celular-automatas - Haskell'
 const automatasJava = 'Fractals-with-celular-automatas - Java'
+const primosJava = 'microPrimeNumbers - Java'
 
 // Subtítulos
 const breveTfg = computed(() => t('projects.btfg'))
 const breveAH = computed(() => t('projects.bah'))
 const breveAJ = computed(() => t('projects.baj'))
+const brevePJ = computed(() => t('projects.bpj'))
 
 // Textos de los párrafos
 const descripciónTfg = computed(() => t('projects.dtfg'))
 const descripciónAH = computed(() => t('projects.dah'))
 const descripciónAJ = computed(() => t('projects.daj'))
+const descripciónPJ = computed(() => t('projects.dpj'))
+
+// Estado del modal
+const isPrimeToolsModalOpen = ref(false)
+
+// Funciones para controlar el modal
+const openPrimeToolsModal = () => {
+  isPrimeToolsModalOpen.value = true
+}
+const closePrimeToolsModal = () => {
+  isPrimeToolsModalOpen.value = false
+}
 </script>
 
 <style>
@@ -97,5 +140,26 @@ const descripciónAJ = computed(() => t('projects.daj'))
 
 .repo-link:hover::after {
   width: 100%;
+}
+
+.demo-button {
+  background: var(--background-button);
+  color: var(--color-button);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.demo-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--sombra-hover-button);
 }
 </style>
