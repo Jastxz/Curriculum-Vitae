@@ -45,7 +45,7 @@ defineProps({
   align: {
     type: String,
     default: 'center',
-    validator: (value: string) => ['left', 'center', 'right'].includes(value),
+    validator: (value: string) => ['origin', 'left', 'center', 'right'].includes(value),
   },
   // Forma: 'rectangle', 'rounded', 'circle'
   shape: {

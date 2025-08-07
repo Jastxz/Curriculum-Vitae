@@ -149,14 +149,16 @@ const error = ref<string | null>(null)
 const polarChart = ref<HTMLCanvasElement | null>(null)
 
 // API base URL - ajusta según tu configuración
-const API_BASE_URL = 'https://microprime.javig.org'
+//const API_BASE_URL = 'https://microprime.javig.org'
 // API for dev
-//const API_BASE_URL = 'http://localhost:8080'
+const API_BASE_URL = 'http://localhost:8080'
 
-// Limpiar eventos cuando se destruya el componente
+// Variable para guardar la función cleanup
+let canvasCleanup: (() => void) | undefined = undefined
+
+// Registrar el lifecycle hook sincrónamente
 onBeforeUnmount(() => {
-  const cleanup = setupCanvasEvents()
-  cleanup?.()
+  canvasCleanup?.()
 })
 
 const chooseTab = (tab: string) => {
@@ -191,8 +193,8 @@ const tableData = computed(() => {
   for (let i = 0; i < nums.length; i++) {
     const actualDiff = nums[i].split(':')
     data.push({
-      difference: actualDiff[0],
-      repetition: actualDiff[1],
+      difference: Number(actualDiff[0]),
+      repetition: Number(actualDiff[1]),
     })
   }
 
@@ -267,6 +269,7 @@ const calculateResults = async () => {
       drawPolarChart(points)
       // Configurar eventos solo una vez
       if (!polarChart.value?.hasAttribute('data-events-setup')) {
+        canvasCleanup = setupCanvasEvents()
         polarChart.value?.setAttribute('data-events-setup', 'true')
       }
     } else {
@@ -464,8 +467,10 @@ const toCartesian = (p: { axisX: number; axisY: number }) => {
 
 // Configurar eventos del canvas
 const setupCanvasEvents = () => {
-  if (!polarChart.value) return
-
+  if (!polarChart.value) {
+    return
+  }
+  
   const canvas = polarChart.value
 
   // Evento de rueda para zoom

@@ -288,7 +288,7 @@ watch(
 .table-header {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--bordeado-palido);
-  background: var(--gris-palido);
+  background: var(--selection-background);
 }
 
 .table-title {
@@ -380,7 +380,7 @@ watch(
 }
 
 .data-table.striped tbody tr:nth-child(even) {
-  background: var(--gris-palido);
+  background: var(--selection-background);
 }
 
 .data-table tbody tr.row-hover:hover {
@@ -412,7 +412,7 @@ watch(
   gap: 0.5rem;
   padding: 1rem;
   border-top: 1px solid var(--bordeado-palido);
-  background: var(--gris-palido);
+  background: var(--selection-background);
 }
 
 .page-button {
@@ -443,7 +443,7 @@ watch(
 .table-footer {
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--bordeado-palido);
-  background: var(--gris-palido);
+  background: var(--selection-background);
 }
 
 /* Responsive */
