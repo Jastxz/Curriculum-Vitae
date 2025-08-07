@@ -148,10 +148,9 @@ const results = ref<any>(null)
 const error = ref<string | null>(null)
 const polarChart = ref<HTMLCanvasElement | null>(null)
 
-// API base URL - ajusta según tu configuración
-//const API_BASE_URL = 'https://microprime.javig.org'
-// API for dev
-const API_BASE_URL = 'http://localhost:8080'
+// API base URL - ajustada según configuración
+const actualURL = window.location.href
+const API_BASE_URL = actualURL === 'http://localhost:5173/' ? 'http://localhost:8080' : 'https://microprime.javig.org'
 
 // Variable para guardar la función cleanup
 let canvasCleanup: (() => void) | undefined = undefined
