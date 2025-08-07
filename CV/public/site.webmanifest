@@ -1,0 +1,27 @@
+{
+  "name": "Javier Gil Blázquez - CV",
+  "short_name": "CV Javier Gil",
+  "description": "CV personal de Javier Gil Blázquez - Backend Developer",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png", 
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#3498db",
+  "background_color": "#f8f9fa",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}
