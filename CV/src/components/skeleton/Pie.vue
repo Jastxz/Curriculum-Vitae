@@ -4,7 +4,7 @@
       <div class="contact-info">
         <span class="sign">© {{ currentYear }} Javier Gil</span>
         <span class="separator">—</span>
-        <a href="mailto:javicraft14@gmail.com" class="footer-link">Mail</a>
+        <a href="mailto:javgilbla@proton.me" class="footer-link">Mail</a>
         <span class="dot">•</span>
         <a href="https://github.com/Jastxz" target="_blank" class="footer-link">GitHub</a>
         <span class="dot">•</span>

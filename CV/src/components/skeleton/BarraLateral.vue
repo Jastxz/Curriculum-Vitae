@@ -63,7 +63,7 @@
               <circle cx="4" cy="4" r="2"></circle>
             </svg>
           </a>
-          <a href="mailto:javicraft14@gmail.com" class="social-link">
+          <a href="mailto:javgilbla@proton.me" class="social-link">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"

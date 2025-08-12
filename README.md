@@ -161,7 +161,7 @@ Este proyecto es de uso personal. El código está disponible para referencia y 
 
 ## 📞 Contacto
 
-- **Email**: javicraft14@gmail.com
+- **Email**: javgilbla@proton.me
 - **LinkedIn**: [Javier Gil Blázquez](http://www.linkedin.com/in/javier-gil-blázquez-a84015219)
 - **GitHub**: [@Jastxz](https://github.com/Jastxz)
 
