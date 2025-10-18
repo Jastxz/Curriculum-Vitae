@@ -47,7 +47,9 @@
     "dtfg": "Este proyecto es una aplicación con la que se puede jugar a algunos juegos clásicos contra la máquina. La gracia del proyecto era crear la interfaz de usuario y el motor a mano desde cero o partiendo de lo mínimo. En el caso de la interfaz, me apoyé en una librería de dibujo de formas y letras, por eso la GUI se ve tan limitada o bruta. El motor de juego está creado desde cero al 100%. Adapté el algoritmo clásico de búsqueda con adversario MiniMax en su versión Negamax con algunas mejoras añadidas dependiendo del nivel de dificultad que quisiera elegir el usuario.",
     "dah": "Esta aplicación maneja el mismo estilo que mi aplicación de juegos con búsqueda de adversario. De esta manera reaprovechaba lo que ya tenía desarrollado en este sentido. En esta ocasión, el objetivo era poder visualizar cualquiera de las 255 reglas para la generación de autómatas celulares; ya fuera partiendo desde un entorno aleatorio o desde un entorno controlado clásico.",
     "daj": "Esta aplicación es hermana de la que tiene su mismo nombre pero desarrollada con Haskell. Mi objetivo era replicar el mismo uso para hacer comparativas en el diseño, implementación y potencia de computación entre ambas. Las diferencias principales se encuentran en la interfaz de usuario, que esta vez usa la librería Java Swing, que a día de hoy está un poco obsoleta si no me equivoco, y que esta aplicación solo tiene implementadas algunas reglas a mano.",
-    "dpj": "Este microservicio es una API que tengo desarrollada para dar soporte a ciertas inquietudes con los números primos, así como intentar arrojar otra persectiva sobre los mismos. Supongo que me gusta contemplar las cosas desde varios puntos de vista. Este proyecto está construido con Java 21 y Spring Boot 3, y se ha tenido en cuenta el posible número de peticiones y la necesidad de potencia de cálculo computacional. Está ajustado para consumir unos recursos aceptablemente bajos en el servidor en el que está actualmente alojado. Y cuenta con un límite en el número de peticiones para evitar dar pie a ataques de saturación de llamadas."
+    "dpj": "Este microservicio es una API que tengo desarrollada para dar soporte a ciertas inquietudes con los números primos, así como intentar arrojar otra persectiva sobre los mismos. Supongo que me gusta contemplar las cosas desde varios puntos de vista. Este proyecto está construido con Java 21 y Spring Boot 3, y se ha tenido en cuenta el posible número de peticiones y la necesidad de potencia de cálculo computacional. Está ajustado para consumir unos recursos aceptablemente bajos en el servidor en el que está actualmente alojado. Y cuenta con un límite en el número de peticiones para evitar dar pie a ataques de saturación de llamadas.",
+    "bgj": "Juego de mesa con búsqueda de estados implementado en Java SpringBoot y una interfaz gráfica básica.",
+    "dgj": "Esta aplicación es una réplica de mi proyecto de juegos con adversario desarrollado en Haskell. En esta ocasión, el proyecto está desarrollado con microservicios Java SpringBoot y se apoya de la interfaz web para el uso del usuario. El motor de juego está desarrollado basado en el código de Haskell y se ha implementado el algoritmo de búsqueda con adversario Negamax con algunas mejoras dependiendo del nivel de dificultad seleccionado por el usuario."
   },
   "skills": {
     "tituloB": "Habilidades blandas",
@@ -108,5 +110,28 @@
   },
   "table": {
     "items": "elementos"
+  },
+  "games": {
+    "title": "Juegos de mesa con IA",
+    "titleSimple": "Juegos de mesa",
+    "description": "Juega a juegos clásicos contra una IA básica",
+    "selectGame": "Selecciona un juego",
+    "checkers": "Damas",
+    "ticTacToe": "Tres en raya",
+    "selectDifficulty": "Selecciona la dificultad",
+    "easy": "Fácil",
+    "medium": "Medio",
+    "hard": "Difícil",
+    "newGame": "Nuevo juego",
+    "turn": "Turno",
+    "computerTurn": "Turno de la computadora",
+    "winner": "Ganador",
+    "computerWins": "¡La computadora gana!",
+    "draw": "¡Empate!",
+    "back": "Volver",
+    "chooseColor": "Elige tu color:",
+    "red": "Rojas",
+    "black": "Negras",
+    "win": "ganan"
   }
 }

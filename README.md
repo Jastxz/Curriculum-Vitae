@@ -69,7 +69,7 @@ CV/
 - **`Tarjeta.vue`**: Tarjetas versátiles para mostrar información
 - **`Lista.vue`**: Listas configurables con búsqueda y ordenamiento
 - **`Tabla.vue`**: Tablas interactivas con paginación y filtros
-- **`ModalProyecto.vue`**: Modal reutilizable para proyectos interactivos
+- **`Modal.vue`**: Modal reutilizable para proyectos interactivos
 - **`Parrafo.vue`**, **`Imagen.vue`**: Componentes de contenido
 
 ### 🔧 Herramientas Interactivas

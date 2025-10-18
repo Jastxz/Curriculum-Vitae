@@ -47,7 +47,9 @@
     "dtfg": "This project is an application with which you can play some classic games against the machine. The aim of the project was to create the user interface and the engine by hand from scratch or from the bare minimum. In the case of the UI, I relied on a library for drawing shapes and letters, which is why the GUI looks so limited or crude. The game engine is 100% created from scratch. I adapted the classic MiniMax adversarial search algorithm in its Negamax version with some added improvements depending on the difficulty level the user wants to choose.",
     "dah": "This application handles the same style as my game application with opponent search. In this way, I reused what I had already developed in this sense. On this occasion, the objective was to be able to visualise any of the 255 rules for the generation of cellular automata; either starting from a random environment or from a classic controlled environment.",
     "daj": "This application is a sister application to the one with the same name but developed with Haskell. My goal was to replicate the same usage to make comparisons in design, implementation and computational power between the two. The main differences are in the user interface, which this time uses the Java Swing library, which nowadays is a bit obsolete if I am not mistaken, and that this application only has some hand-implemented rules.",
-    "dpj": "This microservice is an API that I have developed to address certain concerns with prime numbers, as well as to try to offer another perspective on them. I suppose I like to look things from different points of view. This project is built with Java 21 and Spring Boot 3, and taking care about the possible number of requests and the need for computational power. It is adjusted to consume acceptably low resources on the server where it is currently hosted. And it has a limit on the number of requests to prevent call saturation attacks."
+    "dpj": "This microservice is an API that I have developed to address certain concerns with prime numbers, as well as to try to offer another perspective on them. I suppose I like to look things from different points of view. This project is built with Java 21 and Spring Boot 3, and taking care about the possible number of requests and the need for computational power. It is adjusted to consume acceptably low resources on the server where it is currently hosted. And it has a limit on the number of requests to prevent call saturation attacks.",
+    "bgj": "Board games with adversarial search adapted to Java SpringBoot microservices and web interface.",
+    "dgj": "This application is a replica of my opponent-based game project developed in Haskell. On this occasion, the project is developed with Java SpringBoot microservices and is supported by the web interface for user use. The game engine is developed from my previous Haskell code and the Negamax opponent search algorithm has been implemented with some improvements depending on the difficulty level selected by the user."
   },
   "skills": {
     "tituloB": "Soft skills",
@@ -108,5 +110,24 @@
   },
   "table": {
     "items": "items"
+  },
+  "games": {
+    "title": "AI Board Games",
+    "titleSimple": "Board Games",
+    "description": "Play classic games against a basic AI",
+    "selectGame": "Select a game to play:",
+    "checkers": "Checkers",
+    "ticTacToe": "Tic Tac Toe",
+    "newGame": "New Game",
+    "turn": "Turn",
+    "computerTurn": "Computer's turn",
+    "winner": "Winner",
+    "computerWins": "Computer wins!",
+    "draw": "It's a draw!",
+    "back": "Back",
+    "chooseColor": "Choose your color:",
+    "red": "Red",
+    "black": "Black",
+    "win": "wins"
   }
 }

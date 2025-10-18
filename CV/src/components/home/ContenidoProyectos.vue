@@ -62,8 +62,25 @@
       </button>
     </template>
   </Tarjeta>
+  <Tarjeta :title="gamesJava" :subtitle="breveGJ">
+    <template #default>
+      {{ descripciónGJ }}
+    </template>
+    <template #footer>
+      <a
+        href=""
+        target="_blank"
+        class="repo-link"
+        >GitHub repo</a
+      >
+      <br>
+      <button @click="openGamesModal" class="demo-button">
+        {{ $t('projects.tryDemo') }}
+      </button>
+    </template>
+  </Tarjeta>
 
-  <ModalProyecto
+  <Modal
     :is-open="isPrimeToolsModalOpen"
     :title="$t('primeTools.title')"
     :subtitle="$t('primeTools.description')"
@@ -71,13 +88,23 @@
     @close="closePrimeToolsModal"
   >
     <VisualizadorPrimos />
-  </ModalProyecto>
+  </Modal>
+  <Modal
+    :is-open="isGamesModalOpen"
+    :title="$t('games.title')"
+    :subtitle="$t('games.description')"
+    size="xlarge"
+    @close="closeGamesModal"
+  >
+    <JuegosMesa />
+  </Modal>
 </template>
 
 <script setup lang="ts">
 import Tarjeta from '../tools/Tarjeta.vue'
-import ModalProyecto from '../tools/ModalProyecto.vue'
+import Modal from '../tools/Modal.vue'
 import VisualizadorPrimos from '../projects/VisualizadorPrimos.vue'
+import JuegosMesa from '../projects/JuegosMesa.vue'
 import { useI18n } from 'vue-i18n'
 import { ref, computed } from 'vue'
 
@@ -88,21 +115,25 @@ const tfg = 'Adversarial-Search-Haskell'
 const automatasHaskell = 'Fractals-with-celular-automatas - Haskell'
 const automatasJava = 'Fractals-with-celular-automatas - Java'
 const primosJava = 'microPrimeNumbers - Java'
+const gamesJava = 'MiniGames - Java'
 
 // Subtítulos
 const breveTfg = computed(() => t('projects.btfg'))
 const breveAH = computed(() => t('projects.bah'))
 const breveAJ = computed(() => t('projects.baj'))
 const brevePJ = computed(() => t('projects.bpj'))
+const breveGJ = computed(() => t('projects.bgj'))
 
 // Textos de los párrafos
 const descripciónTfg = computed(() => t('projects.dtfg'))
 const descripciónAH = computed(() => t('projects.dah'))
 const descripciónAJ = computed(() => t('projects.daj'))
 const descripciónPJ = computed(() => t('projects.dpj'))
+const descripciónGJ = computed(() => t('projects.dgj'))
 
 // Estado del modal
 const isPrimeToolsModalOpen = ref(false)
+const isGamesModalOpen = ref(false)
 
 // Funciones para controlar el modal
 const openPrimeToolsModal = () => {
@@ -110,6 +141,12 @@ const openPrimeToolsModal = () => {
 }
 const closePrimeToolsModal = () => {
   isPrimeToolsModalOpen.value = false
+}
+const openGamesModal = () => {
+  isGamesModalOpen.value = true
+}
+const closeGamesModal = () => {
+  isGamesModalOpen.value = false
 }
 </script>
 
