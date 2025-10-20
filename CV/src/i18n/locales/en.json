@@ -79,7 +79,6 @@
     "inputPlaceholder": "Ex: 100",
     "searchPlaceholder": "Search in table...",
     "calculate": "Calculate",
-    "error": "Error",
     "clear": "Clear",
     "polarResults": "Polar coordinates of prime numbers",
     "dataPreview": "Data preview",
@@ -90,7 +89,6 @@
     "andMore": "and {count} more",
     "primes": "Prime Numbers",
     "differences": "Differences",
-    "unknownError": "Unknown error",
     "repetitions": "Times it occurs",
     "controls": "Controls",
     "wheelZoom": "Wheel = Zoom",
@@ -98,12 +96,16 @@
     "reset": "= Reset",
     "zoom": "Zoom",
     "gridSize": "Grid",
+    "badRequest": "Bad request. Check the input number is not 0 neither negative."
+  },
+  "connectionError": {
+    "error": "Error",
+    "unknownError": "Unknown error",
     "connectionError": "Connection error.",
-    "badRequest": "Bad request. Check the input number is not 0 neither negative.",
+    "badRequest": "Bad request.",
     "tooManyRequests": "Too many requests. Wait a minute.",
     "serverError": "Internal server error.",
-    "serviceUnavailable": "Service unavailable or not enough resources.",
-    "httpError": "HTTP error"
+    "serviceUnavailable": "Service unavailable or not enough resources."
   },
   "modal": {
     "close": "Close"
@@ -128,6 +130,7 @@
     "chooseColor": "Choose your color:",
     "red": "Red",
     "black": "Black",
-    "win": "wins"
+    "win": "wins",
+    "calculating": "Calculating..."
   }
 }

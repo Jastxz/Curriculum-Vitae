@@ -13,6 +13,7 @@
       >
         {{ cell }}
       </button>
+      <span v-if="isLoading" class="loading-spinner">{{ $t('games.calculating') }}</span>
     </div>
 
     <div class="info">
@@ -27,10 +28,19 @@
       </div>
     </div>
   </div>
+  <!-- Error -->
+  <div v-if="error" class="error-message">
+    <h3>{{ $t('connectionError.error') }}</h3>
+    <p>{{ error }}</p>
+    <button @click="closeError" class="close-btn">×</button>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 
 type Player = 'X' | 'O'
 type Cell = Player | null
@@ -40,9 +50,13 @@ const emit = defineEmits<{
 }>()
 
 const board = ref<Cell[]>(Array(9).fill(null))
+const memoryIndex = ref<number>(0)
 const currentPlayer = ref<Player>('X')
 const winner = ref<Player | 'Empate' | null>(null)
 const winningLine = ref<number[] | null>(null)
+const isLoading = ref(false)
+const error = ref<string | null>(null)
+const timeout = ref<number | null>(null)
 
 const winPatterns = [
   [0, 1, 2], [3, 4, 5], [6, 7, 8], // filas
@@ -75,6 +89,92 @@ const makeMove = (index: number): void => {
   
   if (!winner.value) {
     currentPlayer.value = currentPlayer.value === 'X' ? 'O' : 'X'
+    memoryIndex.value = index
+    calculateAImove()
+  }
+}
+
+// Llamada a la API de cálculo de movimiento
+const calculateAImove = async () => {
+  
+  isLoading.value = true
+  error.value = null
+  const indices = indexTo2D(memoryIndex.value, 3)
+  const mundoRequest = { 
+        data: to2D(board.value.map(cell => {
+          if (cell === 'X') return 1
+          if (cell === 'O') return 2
+          return 0
+        }), 3),
+        posicionFila: indices[0],
+        posicionColumna: indices[1],
+        marca: currentPlayer.value === 'X' ? 2 : 1,
+        turno: 2,
+        dificultad: 1,
+        profundidad: 1 
+      }
+
+  try {
+    // API base URL - ajustada según configuración
+    const actualURL = window.location.href
+    const endpoint = actualURL === 'http://localhost:5173/' ? 'http://localhost:8080/v0/tresenraya' : 'https://microadversarial.javig.org/v0/tresenraya'
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(mundoRequest),
+    })
+
+    if (!response.ok) {
+      // Crear errores específicos según el status
+      const errorData = await response.json().catch(() => ({}))
+      // Limpia timeout anterior si existe
+      if (timeout.value) {timeout.value = null}
+      
+      timeout.value = setTimeout(() => {
+        error.value = null
+      }, 5000)
+
+      switch (response.status) {
+        case 400:
+          throw new Error(errorData.message || t('connectionError.badRequest'))
+        case 429:
+          throw new Error(t('connectionError.tooManyRequests'))
+        case 500:
+          throw new Error(t('connectionError.serverError'))
+        case 503:
+          throw new Error(t('connectionError.serviceUnavailable'))
+        default:
+          throw new Error(`${t('connectionError.httpError')} ${response.status}`)
+      }
+    }
+
+    const tableroResponse = await response.json()
+
+    board.value = to1D<number | null>(tableroResponse.data).map((cell: number | null) => {
+      if (cell === 1) return 'X'
+      if (cell === 2) return 'O'
+      return null
+    })
+    memoryIndex.value = coordsTo1D(
+      tableroResponse.fila,
+      tableroResponse.columna,
+      3
+    )
+    currentPlayer.value = currentPlayer.value === 'X' ? 'O' : 'X'
+    checkWinner()
+    
+  } catch (err) {
+    if (err instanceof TypeError && err.message.includes('fetch')) {
+      error.value = t('connectionError.connectionError')
+    } else if (err instanceof Error) {
+      error.value = err.message
+    } else {
+      error.value = t('connectionError.unknownError')
+    }
+  } finally {
+    isLoading.value = false
   }
 }
 
@@ -83,6 +183,31 @@ const resetGame = (): void => {
   currentPlayer.value = 'X'
   winner.value = null
   winningLine.value = null
+}
+
+// 1D a 2D
+const to2D = <T>(arr: T[], cols: number): T[][] => {
+  return Array.from({ length: Math.ceil(arr.length / cols) }, (_, row) =>
+    arr.slice(row * cols, row * cols + cols)
+  )
+}
+
+// 2D a 1D
+const to1D = <T>(arr: T[][]): T[] => arr.flat()
+
+// Índice 1D a coordenadas 2D
+const indexTo2D = (index: number, cols: number): [number, number] => {
+  return [Math.floor(index / cols), index % cols]
+}
+
+// Coordenadas 2D a índice 1D
+const coordsTo1D = (row: number, col: number, cols: number): number => {
+  return row * cols + col
+}
+
+const closeError = () => {
+  error.value = null
+  if (timeout.value) {timeout.value = null}
 }
 </script>
 
@@ -182,5 +307,23 @@ h1 {
 
 .back:hover {
   background: #616161;
+}
+
+.error-message {
+  color: #dc3545;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 5px;
+  color: #c00;
 }
 </style>

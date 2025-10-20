@@ -79,7 +79,6 @@
     "inputPlaceholder": "Ej: 100",
     "searchPlaceholder": "Buscar en tabla...",
     "calculate": "Calcular",
-    "error": "Error",
     "clear": "Limpiar",
     "polarResults": "Coordenadas Polares de Números Primos",
     "dataPreview": "Vista previa de datos",
@@ -90,7 +89,6 @@
     "andMore": "y {count} más",
     "primes": "Números Primos",
     "differences": "Diferencias",
-    "unknownError": "Error desconocido",
     "repetitions": "Veces que se repite",
     "controls": "Controles",
     "wheelZoom": "Rueda = Zoom",
@@ -98,11 +96,16 @@
     "reset": "= Reset",
     "zoom": "Zoom",
     "gridSize": "Grid",
+    "badRequest": "Petición inválida. Verifica que el número ingresado no es 0 ni negativo."
+  },
+  "connectionError": {
+    "error": "Error",
+    "unknownError": "Error desconocido",
     "connectionError": "Error de conexión.",
-    "badRequest": "Petición inválida. Verifica que el número ingresado no es 0 ni negativo.",
     "tooManyRequests": "Demasiadas peticiones. Espera un minuto.",
     "serverError": "Error interno del servidor.",
     "serviceUnavailable": "Servicio no disponible o recursos insuficientes.",
+    "badRequest": "Petición inválida.",
     "httpError": "Error HTTP"
   },
   "modal": {
@@ -132,6 +135,7 @@
     "chooseColor": "Elige tu color:",
     "red": "Rojas",
     "black": "Negras",
-    "win": "ganan"
+    "win": "ganan",
+    "calculating": "Calculando..."
   }
 }

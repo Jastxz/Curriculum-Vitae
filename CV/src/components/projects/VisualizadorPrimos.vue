@@ -50,7 +50,7 @@
       <div v-if="results || error" class="results-section">
         <!-- Error -->
         <div v-if="error" class="error-message">
-          <h3>{{ $t('primeTools.error') }}</h3>
+          <h3>{{ $t('connectionError.error') }}</h3>
           <p>{{ error }}</p>
           <button @click="clearResults" class="clear-button">
             {{ $t('primeTools.clear') }}
@@ -248,13 +248,13 @@ const calculateResults = async () => {
         case 400:
           throw new Error(errorData.message || t('primeTools.badRequest'))
         case 429:
-          throw new Error(t('primeTools.tooManyRequests'))
+          throw new Error(t('connectionError.tooManyRequests'))
         case 500:
-          throw new Error(t('primeTools.serverError'))
+          throw new Error(t('connectionError.serverError'))
         case 503:
-          throw new Error(t('primeTools.serviceUnavailable'))
+          throw new Error(t('connectionError.serviceUnavailable'))
         default:
-          throw new Error(`${t('primeTools.httpError')} ${response.status}`)
+          throw new Error(`${t('connectionError.httpError')} ${response.status}`)
       }
     }
 
@@ -276,11 +276,11 @@ const calculateResults = async () => {
     }
   } catch (err) {
     if (err instanceof TypeError && err.message.includes('fetch')) {
-      error.value = t('primeTools.connectionError')
+      error.value = t('connectionError.connectionError')
     } else if (err instanceof Error) {
       error.value = err.message
     } else {
-      error.value = t('primeTools.unknownError')
+      error.value = t('connectionError.unknownError')
     }
   } finally {
     isLoading.value = false
