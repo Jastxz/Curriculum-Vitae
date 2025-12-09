@@ -5,35 +5,60 @@
       <div v-if="currentGame === 'menu'" class="menu">
         <h1 class="title">{{ $t('games.titleSimple') }}</h1>
         <div class="menu-buttons">
+          <div class="difficulty-selector">
+            <button
+              v-for="level in niveles"
+              :key="level.value"
+              @click="dificultad = level.value"
+              :class="{ active: dificultad === level.value }"
+            >
+              {{ level.label }}
+            </button>
+          </div>
           <button @click="currentGame = 'tictactoe'" class="menu-btn blue">
             {{ $t('games.ticTacToe') }}
           </button>
-          <button @click="currentGame = 'checkers'" class="menu-btn red">{{ $t('games.checkers') }}</button>
+          <button @click="currentGame = 'checkers'" class="menu-btn red">
+            {{ $t('games.checkers') }}
+          </button>
         </div>
       </div>
 
       <!-- 3 en Raya -->
       <div v-if="currentGame === 'tictactoe'">
-        <TresEnRaya @back="currentGame = 'menu'"/>
+        <TresEnRaya :dificultad="dificultad" @back="currentGame = 'menu'" />
       </div>
 
       <!-- Damas -->
       <div v-if="currentGame === 'checkers'">
-        <Damas @back="currentGame = 'menu'"/>
+        <Damas :dificultad="dificultad" @back="currentGame = 'menu'" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import TresEnRaya from './boardGames/TresEnRaya.vue'
 import Damas from './boardGames/Damas.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 type Game = 'menu' | 'tictactoe' | 'checkers'
 
 // Estado general
 const currentGame = ref<Game>('menu')
+const dificultad = ref<number>(0)
+
+//  Definición de niveles de dificultad
+const niveles = [
+  { value: 4, label: computed(() => t('games.random')) },
+  { value: 0, label: computed(() => t('games.veryEasy')) },
+  { value: 1, label: computed(() => t('games.easy')) },
+  { value: 2, label: computed(() => t('games.medium')) },
+  { value: 3, label: computed(() => t('games.hard')) },
+]
 </script>
 
 <style scoped>
@@ -66,7 +91,7 @@ const currentGame = ref<Game>('menu')
   font-size: 2.5rem;
   font-weight: bold;
   color: #1f2937;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .menu-buttons {
@@ -103,5 +128,32 @@ const currentGame = ref<Game>('menu')
 
 .menu-btn.red:hover {
   background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+}
+
+.difficulty-selector {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.difficulty-selector button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.difficulty-selector button:hover {
+  border-color: #666;
+}
+
+.difficulty-selector button.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
 }
 </style>

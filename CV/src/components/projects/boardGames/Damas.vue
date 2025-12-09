@@ -3,13 +3,24 @@
     <h1>{{ $t('games.checkers') }}</h1>
 
     <div>
-      <p class="status">{{ $t('games.turn') }}: {{ currentPlayer === 'red' ? $t('games.red') : $t('games.black') }}</p>
-      <p v-if="winner" class="winner-text">{{ winner + ' ' + $t('games.win')}}</p>
+      <p class="status">
+        {{ $t('games.turn') }}: {{ currentPlayer === 'red' ? $t('games.red') : $t('games.black') }}
+      </p>
+      <p v-if="winner" class="winner-text">{{ winner + ' ' + $t('games.win') }}</p>
+
+      <div class="controls" v-if="!winner">
+        <label>{{ $t('games.chooseSide') }}: </label>
+        <select v-model="userColor" @change="resetGame" :disabled="isLoading">
+          <option value="red">{{ $t('games.red') }}</option>
+          <option value="black">{{ $t('games.black') }}</option>
+        </select>
+      </div>
     </div>
 
     <div class="board">
+      <!-- Cells grid for background and interaction -->
       <div
-        v-for="(cell, index) in board"
+        v-for="(cell, index) in 64"
         :key="index"
         class="cell"
         :class="{
@@ -19,30 +30,72 @@
         }"
         @click="handleClick(index)"
       >
-        <div v-if="cell" class="piece" :class="{ [cell.color]: true, king: cell.isKing }">
-          <span v-if="cell.isKing">♔</span>
+        <!-- Coordinates debugging triggers could go here -->
+      </div>
+
+      <!-- Pieces Overlay -->
+      <div
+        v-for="piece in pieces"
+        :key="piece.key"
+        class="piece-container"
+        :style="getPieceStyle(piece.index)"
+      >
+        <div class="piece" :class="{ [piece.color]: true, king: piece.isKing }">
+          <span v-if="piece.isKing">♔</span>
         </div>
+      </div>
+
+      <div v-if="isLoading" class="loading-overlay">
+        <span class="loading-spinner">{{ $t('games.calculating') }}</span>
       </div>
     </div>
 
     <div class="buttons">
-      <button class="reset" @click="resetGame">{{ $t('games.newGame') }}</button>
+      <button class="reset" @click="resetGame" :disabled="isLoading">
+        {{ $t('games.newGame') }}
+      </button>
       <button class="back" @click="emit('back')">{{ $t('games.back') }}</button>
     </div>
+  </div>
+
+  <!-- Error -->
+  <div v-if="error" class="error-message">
+    <h3>{{ $t('connectionError.error') }}</h3>
+    <p>{{ error }}</p>
+    <div v-if="currentPlayer !== userColor" class="error-actions">
+      <button @click="retryAImove" class="retry-btn">{{ $t('connectionError.retry') }}</button>
+    </div>
+    <button @click="closeError" class="close-btn">×</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 type Color = 'red' | 'black'
 
 interface Piece {
   color: Color
   isKing: boolean
+  id: number
+  key: string
 }
 
 type Cell = Piece | null
+
+// IDs from FuncionesDamas.java
+const whiteIDs = [51, 53, 55, 57, 60, 62, 64, 66, 71, 73, 75, 77]
+const blackIDs = [1, 2, 4, 6, 11, 13, 15, 17, 20, 22, 24, 26]
+
+const props = defineProps({
+  dificultad: {
+    type: Number,
+    default: 0,
+  },
+})
 
 const emit = defineEmits<{
   back: []
@@ -54,6 +107,20 @@ const selectedPiece = ref<number | null>(null)
 const validMoves = ref<number[]>([])
 const winner = ref<string | null>(null)
 const mustCapture = ref<number[]>([])
+const userColor = ref<Color>('red')
+const isLoading = ref(false)
+const error = ref<string | null>(null)
+const timeout = ref<number | null>(null)
+const lastMoveTo = ref<number>(0)
+
+const pieces = computed(() => {
+  return board.value
+    .map((cell, index) => {
+      if (cell) return { ...cell, index }
+      return null
+    })
+    .filter((p): p is Piece & { index: number } => p !== null)
+})
 
 const isDarkCell = (index: number): boolean => {
   const row = Math.floor(index / 8)
@@ -64,12 +131,19 @@ const isDarkCell = (index: number): boolean => {
 const initBoard = (): void => {
   board.value = Array(64).fill(null)
 
+  let blackCount = 0
+  let whiteCount = 0
+
   for (let i = 0; i < 24; i++) {
     const row = i < 12 ? Math.floor(i / 4) : 5 + Math.floor((i - 12) / 4)
     const col = (row % 2 === 0 ? 0 : 1) + (i % 4) * 2
+
+    const isBlack = i < 12
     board.value[row * 8 + col] = {
-      color: i < 12 ? 'black' : 'red',
+      color: isBlack ? 'black' : 'red',
       isKing: false,
+      id: isBlack ? blackIDs[blackCount++] : whiteIDs[whiteCount++],
+      key: `piece-${i}`, // Unique stable key
     }
   }
 }
@@ -191,7 +265,10 @@ const movePiece = (from: number, to: number): void => {
   // Promover a rey
   const toRow = getRow(to)
   if ((piece.color === 'red' && toRow === 0) || (piece.color === 'black' && toRow === 7)) {
-    board.value[to]!.isKing = true
+    if (!piece.isKing) {
+      board.value[to]!.isKing = true
+      board.value[to]!.id += 100
+    }
   }
 
   // Captura
@@ -199,6 +276,8 @@ const movePiece = (from: number, to: number): void => {
   const fromCol = getCol(from)
   const toRow2 = getRow(to)
   const toCol = getCol(to)
+
+  lastMoveTo.value = to
 
   if (Math.abs(toRow2 - fromRow) === 2) {
     const middleRow = (fromRow + toRow2) / 2
@@ -220,10 +299,14 @@ const movePiece = (from: number, to: number): void => {
   checkForCaptures()
   selectedPiece.value = null
   validMoves.value = []
+
+  if (!winner.value && currentPlayer.value !== userColor.value) {
+    calculateAImove()
+  }
 }
 
 const handleClick = (index: number): void => {
-  if (winner.value) return
+  if (winner.value || isLoading.value || currentPlayer.value !== userColor.value) return
 
   if (selectedPiece.value === null) {
     const piece = board.value[index]
@@ -260,6 +343,192 @@ const resetGame = (): void => {
   winner.value = null
   mustCapture.value = []
   checkForCaptures()
+
+  if (userColor.value === 'black') {
+    calculateAImove()
+  }
+}
+
+const retryCount = ref(0)
+const maxRetries = 3
+
+const calculateAImove = async (isRetry = false) => {
+  if (!isRetry) {
+    retryCount.value = 0
+    isLoading.value = true
+  }
+
+  error.value = null
+
+  const indices = [getRow(lastMoveTo.value), getCol(lastMoveTo.value)]
+
+  // 1 = Blancas (Red), 2 = Negras (Black)
+  const marca = currentPlayer.value === 'red' ? 2 : 1
+  const turno = currentPlayer.value === 'red' ? 1 : 2
+
+  const mundoRequest = {
+    data: to2D(
+      board.value.map((cell, index) => {
+        if (cell) return cell.id
+        return isDarkCell(index) ? -1 : 0
+      }),
+      8,
+    ),
+    posicionFila: indices[0],
+    posicionColumna: indices[1],
+    marca: marca,
+    turno: turno,
+    juego: 'damas',
+    dificultad: props.dificultad,
+    profundidad: getDepth(props.dificultad),
+  }
+
+  try {
+    const actualURL = window.location.href
+    const endpoint = actualURL.includes('localhost')
+      ? 'http://localhost:8080/v0/damas'
+      : 'https://microadversarial.javig.org/v0/damas'
+
+    // Use AbortController for timeout if needed, but simple fetch is fine for now
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(mundoRequest),
+    })
+
+    if (!response.ok) {
+      if (response.status === 429 || response.status >= 500) {
+        throw new Error('Retryable error')
+      }
+
+      const errorData = await response.json().catch(() => ({}))
+      switch (response.status) {
+        case 400:
+          throw new Error(errorData.message || t('connectionError.badRequest'))
+        default:
+          throw new Error(`${t('connectionError.httpError')} ${response.status}`)
+      }
+    }
+
+    const tableroResponse = await response.json()
+
+    // Map of ID to existing Key to preserve identity
+    const idToKeyMap = new Map<number, string>()
+    board.value.forEach((p) => {
+      if (p) {
+        // Handle ID change logic if any, but since we use stable IDs from backend:
+        // Or if ID changes (king), we might lose it?
+        // King ID = ID + 100. Base ID = ID % 100 roughly.
+        // Actually, we should map based on Base ID.
+        const baseId = p.id > 100 ? p.id - 100 : p.id
+        idToKeyMap.set(baseId, p.key)
+      }
+    })
+
+    board.value = to1D<number | null>(tableroResponse.data).map(
+      (cell: number | null, index: number) => {
+        if (!cell || cell === 0 || cell === -1) return null
+
+        const isKing = cell >= 100
+        const baseId = isKing ? cell - 100 : cell
+
+        let color: Color = 'red' // Default
+        if (whiteIDs.includes(baseId)) {
+          color = 'red'
+        } else if (blackIDs.includes(baseId)) {
+          color = 'black'
+        }
+
+        const key = idToKeyMap.get(baseId) || `piece-ai-${index}-${Date.now()}` // Fallback key
+
+        return { color, isKing, id: cell, key }
+      },
+    )
+
+    lastMoveTo.value = tableroResponse.fila * 8 + tableroResponse.columna
+
+    currentPlayer.value = currentPlayer.value === 'red' ? 'black' : 'red'
+    checkWinner()
+    checkForCaptures()
+    isLoading.value = false
+  } catch (err) {
+    // Retry logic
+    if (retryCount.value < maxRetries) {
+      retryCount.value++
+      // Keep isLoading true
+      setTimeout(() => {
+        calculateAImove(true)
+      }, 3000)
+      return
+    }
+
+    isLoading.value = false
+    if (err instanceof Error && err.message === 'Retryable error') {
+      error.value = t('connectionError.tooManyRequests') // Generic message for exhausted retries
+    } else if (err instanceof TypeError && err.message.includes('fetch')) {
+      error.value = t('connectionError.connectionError')
+    } else if (err instanceof Error) {
+      error.value = err.message
+    } else {
+      error.value = t('connectionError.unknownError')
+    }
+
+    // Clear error after 5s
+    if (timeout.value) {
+      timeout.value = null
+    }
+    timeout.value = setTimeout(() => {
+      error.value = null
+    }, 5000)
+  }
+}
+
+const retryAImove = () => {
+  calculateAImove(true)
+}
+
+const closeError = () => {
+  error.value = null
+  if (timeout.value) {
+    timeout.value = null
+  }
+}
+
+// Helpers
+const to2D = <T,>(arr: T[], cols: number): T[][] => {
+  return Array.from({ length: Math.ceil(arr.length / cols) }, (_, row) =>
+    arr.slice(row * cols, row * cols + cols),
+  )
+}
+
+const to1D = <T,>(arr: T[][]): T[] => arr.flat()
+
+const getDepth = (difficulty: number): number => {
+  switch (difficulty) {
+    case 0:
+      return 2 // Lowest
+    case 1:
+      return 3 // Easy
+    case 2:
+      return 4 // Medium
+    case 3:
+      return 5 // Hard
+    default:
+      return 1
+  }
+}
+
+const getPieceStyle = (index: number) => {
+  const row = Math.floor(index / 8)
+  const col = index % 8
+  return {
+    top: `${row * 12.5}%`,
+    left: `${col * 12.5}%`,
+    width: '12.5%',
+    height: '12.5%',
+  }
 }
 
 initBoard()
@@ -293,6 +562,7 @@ h1 {
 }
 
 .board {
+  position: relative; /* Essential for absolute positioning of pieces */
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   gap: 0;
@@ -330,6 +600,17 @@ h1 {
   background: #6eb8f0;
 }
 
+/* Container moves the piece on the board */
+.piece-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.7s ease; /* Animation magic */
+  pointer-events: none; /* Let clicks pass through to the cell */
+}
+
+/* Piece visual style */
 .piece {
   width: 70%;
   height: 70%;
@@ -387,5 +668,84 @@ h1 {
 
 .back:hover {
   background: #616161;
+}
+
+.controls {
+  margin: 10px 0;
+}
+
+.controls select {
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.loading-spinner {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2196f3;
+}
+
+.error-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  text-align: center;
+  border: 1px solid #dc3545;
+}
+
+.error-message h3 {
+  color: #dc3545;
+  margin-top: 0;
+}
+
+.error-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.retry-btn {
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.retry-btn:hover {
+  background: #1976d2;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
 }
 </style>

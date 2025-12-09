@@ -45,6 +45,13 @@ const { t } = useI18n()
 type Player = 'X' | 'O'
 type Cell = Player | null
 
+const props = defineProps({
+  dificultad: {
+    type: Number,
+    default: 0,
+  },
+})
+
 const emit = defineEmits<{
   back: []
 }>()
@@ -110,14 +117,14 @@ const calculateAImove = async () => {
         posicionColumna: indices[1],
         marca: currentPlayer.value === 'X' ? 2 : 1,
         turno: 2,
-        dificultad: 1,
-        profundidad: 1 
+        dificultad: props.dificultad,
+        profundidad: props.dificultad > 1 ? 9 : 1,
       }
 
   try {
     // API base URL - ajustada según configuración
     const actualURL = window.location.href
-    const endpoint = actualURL === 'http://localhost:5173/' ? 'http://localhost:8080/v0/tresenraya' : 'https://microadversarial.javig.org/v0/tresenraya'
+    const endpoint = actualURL.includes('localhost') ? 'http://localhost:8080/v0/tresenraya' : 'https://microadversarial.javig.org/v0/tresenraya'
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {

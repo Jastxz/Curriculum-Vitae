@@ -15,7 +15,7 @@
   "start": {
     "intro": "Greetings. I am Javier Gil Blázquez, graduated in Computer Engineering - Information Technology with a major in computing from the University of Seville. I currently work at Deloitte as a FullStack Developer in a maintenance and development team supporting another large company.",
     "hobbies": "I have many and varied hobbies. I like to learn and sometimes I do deep research on some topics; among these, some mathematical or computational problems stand out, such as prime numbers or the P=NP problem, although I must confess that I would like to dedicate more research time to them. I also have a personal interest in AI and its fundamental conception. Beyond that related to computation and mathematics, I also like things about normal people, such as playing videogames, series or movies. I also like to consume stories through books. Talking about the more physical side, I like to practice certain sports whenever I have free time and have been able to prepare for the session. Finally, in recent times I have started to refresh and develop my musical skills, as I would like to be able to enjoy some scores or songs more actively.",
-    "stacks": "In the technology stacks section, I am currently interested in several tools for backend development and I know my way around several frontend, cloud, devops and DB technologies. Focusing in this paragraph more on backend technology, which is the one I am most interested in, I have reviewed the Java Spring Boot and also Golang and partners frameworks. As far as Spring Boot is concerned, the support project where I am part of, uses this technology and I am in charge of carrying out a migration from Spring 2.7 to 3.3, which is currently our best option to keep our microservices up to date. I am also developing some more projects with this framework to check how it can be useful for an idea I have in development. In the same way, with Golang I intend to make a similar replica of the same system that I intend to build with Spring Boot, but I still have to give myself more time to learn this language and its frameworks. Apart from that related to Java or Go, I also feel partly inclined to the handling of databases, either SQL or NoSQL. In this aspect, I work with PostgreSQL and I have the official MongoDB certification.",
+    "stacks": "In the technology stacks section, I am currently interested in several tools for backend development and I know my way around several frontend, cloud, devops and DB technologies. Focusing in this paragraph more on backend technology, which is the one I am most interested in, I have reviewed the Java Spring framework for now. As far as Spring is concerned, the support project where I am part of, uses this technology and I was in charge of carrying out a proove of concept of migration from Spring 2.7 to 3.3, which was our best option to keep our microservices up to date in that moment. I am also developing some more projects with this framework to check how it can be useful for an idea I have in development. In the same way, I would like to explore how to make new microservices in other technologies like Golang or Rust. Apart from that related to Java and company, I also feel partly inclined to the handling of databases, either SQL or NoSQL. In this aspect, I work with PostgreSQL and I have the official MongoDB certification.",
     "otherStacks": "Continuing with technologies or stacks, I would like to comment briefly on my perspective or experience with other tools used in this trade. Starting by referencing this web page. This page is created with some HTML5 code, CSS and components developed with Vue in its version 3 and accompanied by the Typescript(TS) language; the decision to use TS is because I prefer the clarity and order it delivers compared to its big brother, or parent, Javascript(JS). I also work with Angular and TS in support of the Deloitte project. In addition, and I take this opportunity to link to the other technologies, we use Jenkins for deployments, GitHub for repos management and the whole project is integrated with AWS, so I am no stranger to using lambdas, Gluejobs or the AWS console itself.",
     "bye": "I think I have already exposed all the acceptably relevant information about me for the purpose of this website. If you would like to know anything else, I invite you to ask me. Thank you for your interest and I have a good day.",
     "descripcionUS": "University of Seville logo",
@@ -27,7 +27,7 @@
     "descripcionSun": "Smiling Sun face"
   },
   "experience": {
-    "actual": "Delivery Analyst - Deloitte",
+    "actual": "Delivery Consultant - Deloitte",
     "fullL": "Full stack developer - EasyLeapp®",
     "becL": "Traineé - EasyLeapp®",
     "tiempoA": "03/2023 – Now | Seville, Andalusia, Spain",
@@ -131,6 +131,11 @@
     "red": "Red",
     "black": "Black",
     "win": "wins",
-    "calculating": "Calculating..."
+    "calculating": "Calculating...",
+    "random": "Random",
+    "veryEasy": "Very Easy",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard"
   }
 }
