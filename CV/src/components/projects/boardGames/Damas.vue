@@ -2,7 +2,7 @@
   <div class="game">
     <h1>{{ $t('games.checkers') }}</h1>
 
-    <div>
+    <div class="controls-line">
       <p class="status">
         {{ $t('games.turn') }}: {{ currentPlayer === 'red' ? $t('games.red') : $t('games.black') }}
       </p>
@@ -670,12 +670,16 @@ h1 {
   background: #616161;
 }
 
+.controls-line {
+  display: inline-flex;
+}
+
 .controls {
   margin: 10px 0;
 }
 
 .controls select {
-  padding: 5px;
+  padding: 1px;
   font-size: 1rem;
   border-radius: 4px;
 }

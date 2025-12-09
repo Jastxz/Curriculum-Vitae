@@ -1,7 +1,7 @@
 <template>
   <div class="game">
     <h1>{{ $t('games.ticTacToe') }}</h1>
-    
+
     <div class="board">
       <button
         v-for="(cell, index) in board"
@@ -21,7 +21,7 @@
         {{ winner === 'Empate' ? $t('games.draw') : $t('games.winner') + `: ${winner}` }}
       </p>
       <p v-else class="status">{{ $t('games.turn') }}: {{ currentPlayer }}</p>
-      
+
       <div class="buttons">
         <button class="reset" @click="resetGame">{{ $t('games.newGame') }}</button>
         <button class="back" @click="emit('back')">{{ $t('games.back') }}</button>
@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
@@ -66,34 +66,37 @@ const error = ref<string | null>(null)
 const timeout = ref<number | null>(null)
 
 const winPatterns = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8], // filas
-  [0, 3, 6], [1, 4, 7], [2, 5, 8], // columnas
-  [0, 4, 8], [2, 4, 6]             // diagonales
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8], // filas
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8], // columnas
+  [0, 4, 8],
+  [2, 4, 6], // diagonales
 ]
 
 const checkWinner = (): void => {
   for (const pattern of winPatterns) {
     const [a, b, c] = pattern
-    if (board.value[a] && 
-        board.value[a] === board.value[b] && 
-        board.value[a] === board.value[c]) {
+    if (board.value[a] && board.value[a] === board.value[b] && board.value[a] === board.value[c]) {
       winner.value = board.value[a]
       winningLine.value = pattern
       return
     }
   }
-  
-  if (board.value.every(cell => cell !== null)) {
+
+  if (board.value.every((cell) => cell !== null)) {
     winner.value = 'Empate'
   }
 }
 
 const makeMove = (index: number): void => {
   if (board.value[index] || winner.value) return
-  
+
   board.value[index] = currentPlayer.value
   checkWinner()
-  
+
   if (!winner.value) {
     currentPlayer.value = currentPlayer.value === 'X' ? 'O' : 'X'
     memoryIndex.value = index
@@ -103,28 +106,32 @@ const makeMove = (index: number): void => {
 
 // Llamada a la API de cálculo de movimiento
 const calculateAImove = async () => {
-  
   isLoading.value = true
   error.value = null
   const indices = indexTo2D(memoryIndex.value, 3)
-  const mundoRequest = { 
-        data: to2D(board.value.map(cell => {
-          if (cell === 'X') return 1
-          if (cell === 'O') return 2
-          return 0
-        }), 3),
-        posicionFila: indices[0],
-        posicionColumna: indices[1],
-        marca: currentPlayer.value === 'X' ? 2 : 1,
-        turno: 2,
-        dificultad: props.dificultad,
-        profundidad: props.dificultad > 1 ? 9 : 1,
-      }
+  const mundoRequest = {
+    data: to2D(
+      board.value.map((cell) => {
+        if (cell === 'X') return 1
+        if (cell === 'O') return 2
+        return 0
+      }),
+      3,
+    ),
+    posicionFila: indices[0],
+    posicionColumna: indices[1],
+    marca: currentPlayer.value === 'X' ? 2 : 1,
+    turno: 2,
+    dificultad: props.dificultad,
+    profundidad: props.dificultad > 1 ? 9 : 1,
+  }
 
   try {
     // API base URL - ajustada según configuración
     const actualURL = window.location.href
-    const endpoint = actualURL.includes('localhost') ? 'http://localhost:8080/v0/tresenraya' : 'https://microadversarial.javig.org/v0/tresenraya'
+    const endpoint = actualURL.includes('localhost')
+      ? 'http://localhost:8080/v0/tresenraya'
+      : 'https://microadversarial.javig.org/v0/tresenraya'
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -137,8 +144,10 @@ const calculateAImove = async () => {
       // Crear errores específicos según el status
       const errorData = await response.json().catch(() => ({}))
       // Limpia timeout anterior si existe
-      if (timeout.value) {timeout.value = null}
-      
+      if (timeout.value) {
+        timeout.value = null
+      }
+
       timeout.value = setTimeout(() => {
         error.value = null
       }, 5000)
@@ -164,14 +173,9 @@ const calculateAImove = async () => {
       if (cell === 2) return 'O'
       return null
     })
-    memoryIndex.value = coordsTo1D(
-      tableroResponse.fila,
-      tableroResponse.columna,
-      3
-    )
+    memoryIndex.value = coordsTo1D(tableroResponse.fila, tableroResponse.columna, 3)
     currentPlayer.value = currentPlayer.value === 'X' ? 'O' : 'X'
     checkWinner()
-    
   } catch (err) {
     if (err instanceof TypeError && err.message.includes('fetch')) {
       error.value = t('connectionError.connectionError')
@@ -193,14 +197,14 @@ const resetGame = (): void => {
 }
 
 // 1D a 2D
-const to2D = <T>(arr: T[], cols: number): T[][] => {
+const to2D = <T,>(arr: T[], cols: number): T[][] => {
   return Array.from({ length: Math.ceil(arr.length / cols) }, (_, row) =>
-    arr.slice(row * cols, row * cols + cols)
+    arr.slice(row * cols, row * cols + cols),
   )
 }
 
 // 2D a 1D
-const to1D = <T>(arr: T[][]): T[] => arr.flat()
+const to1D = <T,>(arr: T[][]): T[] => arr.flat()
 
 // Índice 1D a coordenadas 2D
 const indexTo2D = (index: number, cols: number): [number, number] => {
@@ -214,7 +218,9 @@ const coordsTo1D = (row: number, col: number, cols: number): number => {
 
 const closeError = () => {
   error.value = null
-  if (timeout.value) {timeout.value = null}
+  if (timeout.value) {
+    timeout.value = null
+  }
 }
 </script>
 
@@ -243,7 +249,7 @@ h1 {
   aspect-ratio: 1;
   font-size: 2rem;
   font-weight: bold;
-  background: #f0f0f0;
+  background: #f0f0f0dc;
   border: 2px solid #ddd;
   border-radius: 8px;
   cursor: pointer;
@@ -251,12 +257,13 @@ h1 {
 }
 
 .cell:hover:not(:disabled) {
-  background: #e0e0e0;
+  background: #e0e0e0c4;
   transform: scale(1.05);
 }
 
 .cell:disabled {
   cursor: not-allowed;
+  color: black;
 }
 
 .cell.winner {
@@ -266,8 +273,13 @@ h1 {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 .info {
@@ -288,7 +300,8 @@ h1 {
   margin: 0;
 }
 
-.reset, .back {
+.reset,
+.back {
   flex: 1;
   padding: 12px 24px;
   font-size: 1rem;
