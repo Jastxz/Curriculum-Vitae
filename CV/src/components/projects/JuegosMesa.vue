@@ -18,6 +18,9 @@
           <button @click="currentGame = 'tictactoe'" class="menu-btn blue">
             {{ $t('games.ticTacToe') }}
           </button>
+          <button @click="currentGame = 'cats'" class="menu-btn green">
+            {{ $t('games.cats') }}
+          </button>
           <button @click="currentGame = 'checkers'" class="menu-btn red">
             {{ $t('games.checkers') }}
           </button>
@@ -27,6 +30,11 @@
       <!-- 3 en Raya -->
       <div v-if="currentGame === 'tictactoe'">
         <TresEnRaya :dificultad="dificultad" @back="currentGame = 'menu'" />
+      </div>
+
+      <!-- Gatos -->
+      <div v-if="currentGame === 'cats'">
+        <Gatos :dificultad="dificultad" @back="currentGame = 'menu'" />
       </div>
 
       <!-- Damas -->
@@ -40,12 +48,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import TresEnRaya from './boardGames/TresEnRaya.vue'
+import Gatos from './boardGames/Gatos.vue'
 import Damas from './boardGames/Damas.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-type Game = 'menu' | 'tictactoe' | 'checkers'
+type Game = 'menu' | 'tictactoe' | 'cats' | 'checkers'
 
 // Estado general
 const currentGame = ref<Game>('menu')
@@ -120,6 +129,14 @@ const niveles = [
 
 .menu-btn.blue:hover {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+.menu-btn.green {
+  background: linear-gradient(135deg, #22c55d 0%, #16a34a 100%);
+}
+
+.menu-btn.green:hover {
+  background: linear-gradient(135deg, #16a34a 0%, #16a34a 100%);
 }
 
 .menu-btn.red {
