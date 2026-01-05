@@ -241,7 +241,7 @@ const checkWinner = (): void => {
       .filter((r) => r !== -1)
 
     if (catsRows.length > 0) {
-      const maxCatRow = Math.max(...catsRows)
+      const maxCatRow = Math.min(...catsRows)
       if (mouseRow >= maxCatRow) {
         winner.value = 'Ratón (Rojas)'
         return
