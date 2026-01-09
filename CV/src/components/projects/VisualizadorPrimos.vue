@@ -110,8 +110,10 @@
           <h3>{{ $t('primeTools.chartTab') }}</h3>
 
           <div class="legend">
-            <span class="legend-item red">Primos</span>
+            <span class="legend-item red">Primos/Primes</span>
+            <span> | </span>
             <span class="legend-item green">Gauss</span>
+            <span> | </span>
             <span class="legend-item blue">Aprox</span>
           </div>
 
@@ -980,6 +982,18 @@ const clearResults = () => {
 
 .clear-button:hover {
   background: var(--naranja-suave);
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.blue {
+  color: blue;
 }
 
 /* Responsive */
