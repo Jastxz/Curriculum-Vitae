@@ -8,6 +8,12 @@
       >
         {{ $t('primeTools.polarTab') }}
       </button>
+      <button
+        @click="chooseTab('chart')"
+        :class="['tab-button', { active: activeTab === 'chart' }]"
+      >
+        {{ $t('primeTools.chartTab') }}
+      </button>
       <button @click="chooseTab('diff')" :class="['tab-button', { active: activeTab === 'diff' }]">
         {{ $t('primeTools.diffTab') }}
       </button>
@@ -21,7 +27,9 @@
           {{
             activeTab === 'polar'
               ? $t('primeTools.polarInputLabel')
-              : $t('primeTools.diffInputLabel')
+              : activeTab === 'chart'
+                ? $t('primeTools.chartInputLabel')
+                : $t('primeTools.diffInputLabel')
           }}
         </label>
         <div class="input-group">
@@ -97,6 +105,21 @@
           </div>
         </div>
 
+        <!-- Resultados de Gráfica Lineal -->
+        <div v-else-if="results && activeTab === 'chart'" class="chart-results">
+          <h3>{{ $t('primeTools.chartTab') }}</h3>
+
+          <div class="legend">
+            <span class="legend-item red">Primos</span>
+            <span class="legend-item green">Gauss</span>
+            <span class="legend-item blue">Aprox</span>
+          </div>
+
+          <div class="chart-container">
+            <canvas ref="linearChart" class="interactive-chart"></canvas>
+          </div>
+        </div>
+
         <!-- Resultados de diferencias -->
         <div v-else-if="results && activeTab === 'diff'" class="diff-results">
           <h3>{{ $t('primeTools.primes') }}</h3>
@@ -147,10 +170,12 @@ const isLoading = ref(false)
 const results = ref<any>(null)
 const error = ref<string | null>(null)
 const polarChart = ref<HTMLCanvasElement | null>(null)
+const linearChart = ref<HTMLCanvasElement | null>(null)
 
 // API base URL - ajustada según configuración
 const actualURL = window.location.href
-const API_BASE_URL = actualURL === 'http://localhost:5173/' ? 'http://localhost:8080' : 'https://microprime.javig.org'
+const API_BASE_URL =
+  actualURL === 'http://localhost:5173/' ? 'http://localhost:8080' : 'https://microprime.javig.org'
 
 // Variable para guardar la función cleanup
 let canvasCleanup: (() => void) | undefined = undefined
@@ -231,7 +256,10 @@ const calculateResults = async () => {
   results.value = null
 
   try {
-    const endpoint = activeTab.value === 'polar' ? '/v0/polar' : '/v0/diff'
+    let endpoint = ''
+    if (activeTab.value === 'polar') endpoint = '/v0/polar'
+    else if (activeTab.value === 'diff') endpoint = '/v0/diff'
+    else if (activeTab.value === 'chart') endpoint = '/v0/chart'
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'POST',
       headers: {
@@ -271,6 +299,10 @@ const calculateResults = async () => {
         canvasCleanup = setupCanvasEvents()
         polarChart.value?.setAttribute('data-events-setup', 'true')
       }
+    } else if (activeTab.value === 'chart') {
+      results.value = data
+      await nextTick()
+      drawLinearChart(data)
     } else {
       results.value = data
     }
@@ -347,6 +379,140 @@ const drawPolarChart = (data: Array<{ axisX: number; axisY: number }>) => {
 
   // Dibujar los puntos
   drawPoints(ctx, data, cellSize)
+}
+
+const drawLinearChart = (data: any) => {
+  if (!linearChart.value) return
+  if (!data) return
+
+  const canvas = linearChart.value
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
+
+  // Configurar canvas para alta resolución
+  const rect = canvas.getBoundingClientRect()
+  const dpr = window.devicePixelRatio || 1
+  canvas.width = rect.width * dpr
+  canvas.height = rect.height * dpr
+  ctx.scale(dpr, dpr)
+  canvas.style.width = rect.width + 'px'
+  canvas.style.height = rect.height + 'px'
+
+  const width = rect.width
+  const height = rect.height
+  const padding = 40
+
+  ctx.clearRect(0, 0, width, height)
+
+  // Encontrar máximos para escalar
+  let maxY = 0
+  let maxX = 0
+
+  const allPoints = [...data.primesPoints, ...data.gaussPoints, ...data.aproxPoints]
+
+  allPoints.forEach((p) => {
+    if (p.axisY > maxY) maxY = p.axisY
+    if (p.axisX > maxX) maxX = p.axisX
+  })
+
+  // Escalas
+  const availableWidth = width - 2 * padding
+  const availableHeight = height - 2 * padding
+
+  const scaleX = availableWidth / maxX
+  const scaleY = availableHeight / maxY
+
+  // Ejes
+  ctx.beginPath()
+  ctx.strokeStyle = '#666'
+  ctx.lineWidth = 1
+  // Eje Y
+  ctx.moveTo(padding, padding)
+  ctx.lineTo(padding, height - padding)
+  // Eje X
+  ctx.lineTo(width - padding, height - padding)
+  ctx.stroke()
+
+  ctx.textAlign = 'right'
+  ctx.textBaseline = 'middle'
+  ctx.fillStyle = '#666'
+  ctx.font = '12px Arial'
+
+  // Ticks Eje Y
+  const numTicksY = 10
+  const tickStepY = Math.ceil(maxY / numTicksY)
+
+  for (let i = 0; i <= numTicksY; i++) {
+    const val = i * tickStepY
+    if (val > maxY) break
+    const y = height - padding - val * scaleY
+
+    ctx.beginPath()
+    ctx.moveTo(padding - 5, y)
+    ctx.lineTo(padding, y)
+    ctx.stroke()
+
+    ctx.fillText(val.toString(), padding - 8, y)
+  }
+
+  ctx.textAlign = 'center'
+  ctx.textBaseline = 'top'
+
+  // Ticks Eje X
+  const numTicksX = 10
+  const tickStepX = Math.ceil(maxX / numTicksX)
+
+  for (let i = 0; i <= numTicksX; i++) {
+    const val = i * tickStepX
+    if (val > maxX) break
+    const x = padding + val * scaleX
+
+    ctx.beginPath()
+    ctx.moveTo(x, height - padding)
+    ctx.lineTo(x, height - padding + 5)
+    ctx.stroke()
+
+    ctx.fillText(val.toString(), x, height - padding + 8)
+  }
+
+  // Etiquetas de Ejes
+  ctx.save()
+  ctx.textAlign = 'center'
+  ctx.font = 'bold 14px Arial'
+
+  // Etiqueta X
+  ctx.fillText('Índice primo', width / 2, height - 15)
+
+  // Etiqueta Y
+  ctx.translate(15, height / 2)
+  ctx.rotate(-Math.PI / 2)
+  ctx.fillText('Valor primo', 0, 0)
+
+  ctx.restore()
+
+  // Función auxiliar para dibujar línea
+  const drawLine = (points: any[], color: string) => {
+    ctx.beginPath()
+    ctx.strokeStyle = color
+    ctx.lineWidth = 2
+
+    points.forEach((p, i) => {
+      const x = padding + p.axisX * scaleX
+      const y = height - padding - p.axisY * scaleY
+
+      if (i === 0) ctx.moveTo(x, y)
+      else ctx.lineTo(x, y)
+    })
+    ctx.stroke()
+  }
+
+  // Dibujar las 3 series
+  // primesPoints (Rojo)
+  if (data.primesPoints) drawLine(data.primesPoints, 'red')
+  // gaussPoints (Verde)
+  if (data.gaussPoints) drawLine(data.gaussPoints, 'green')
+  // aproxPoints (Azul)
+  if (data.aproxPoints) drawLine(data.aproxPoints, 'blue')
 }
 
 // Función para dibujar la cuadrícula
@@ -469,7 +635,7 @@ const setupCanvasEvents = () => {
   if (!polarChart.value) {
     return
   }
-  
+
   const canvas = polarChart.value
 
   // Evento de rueda para zoom
