@@ -67,6 +67,7 @@ const niveles = [
   { value: 1, label: computed(() => t('games.easy')) },
   { value: 2, label: computed(() => t('games.medium')) },
   { value: 3, label: computed(() => t('games.hard')) },
+  { value: -1, label: computed(() => t('games.neuralModel')) },
 ]
 </script>
 

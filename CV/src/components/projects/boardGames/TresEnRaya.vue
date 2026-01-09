@@ -129,9 +129,18 @@ const calculateAImove = async () => {
   try {
     // API base URL - ajustada según configuración
     const actualURL = window.location.href
-    const endpoint = actualURL.includes('localhost')
-      ? 'http://localhost:8080/v0/tresenraya'
-      : 'https://microadversarial.javig.org/v0/tresenraya'
+    let endpoint = ''
+
+    if (actualURL.includes('localhost')) {
+      endpoint = 'http://localhost:8080/v0/tresenraya'
+    } else {
+      if (props.dificultad === -1) {
+        endpoint = 'https://microneural.javig.org/v0/tresenraya'
+      } else {
+        endpoint = 'https://microadversarial.javig.org/v0/tresenraya'
+      }
+    }
+
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {

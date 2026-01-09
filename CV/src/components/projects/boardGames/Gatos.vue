@@ -297,9 +297,17 @@ const calculateAImove = async (isRetry = false) => {
 
   try {
     const actualURL = window.location.href
-    const endpoint = actualURL.includes('localhost')
-      ? 'http://localhost:8080/v0/gatos'
-      : 'https://microadversarial.javig.org/v0/gatos'
+    let endpoint = ''
+
+    if (actualURL.includes('localhost')) {
+      endpoint = 'http://localhost:8080/v0/gatos'
+    } else {
+      if (props.dificultad === -1) {
+        endpoint = 'https://microneural.javig.org/v0/gatos'
+      } else {
+        endpoint = 'https://microadversarial.javig.org/v0/gatos'
+      }
+    }
 
     const response = await fetch(endpoint, {
       method: 'POST',

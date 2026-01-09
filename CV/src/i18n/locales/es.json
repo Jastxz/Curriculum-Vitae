@@ -138,6 +138,7 @@
     "veryEasy": "Muy fácil",
     "easy": "Fácil",
     "medium": "Medio",
-    "hard": "Difícil"
+    "hard": "Difícil",
+    "neuralModel": "Modelo Neural"
   }
 }

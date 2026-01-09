@@ -385,9 +385,17 @@ const calculateAImove = async (isRetry = false) => {
 
   try {
     const actualURL = window.location.href
-    const endpoint = actualURL.includes('localhost')
-      ? 'http://localhost:8080/v0/damas'
-      : 'https://microadversarial.javig.org/v0/damas'
+    let endpoint = ''
+
+    if (actualURL.includes('localhost')) {
+      endpoint = 'http://localhost:8080/v0/damas'
+    } else {
+      if (props.dificultad === -1) {
+        endpoint = 'https://microneural.javig.org/v0/damas'
+      } else {
+        endpoint = 'https://microadversarial.javig.org/v0/damas'
+      }
+    }
 
     // Use AbortController for timeout if needed, but simple fetch is fine for now
     const response = await fetch(endpoint, {

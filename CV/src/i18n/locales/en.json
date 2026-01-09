@@ -137,6 +137,7 @@
     "veryEasy": "Very Easy",
     "easy": "Easy",
     "medium": "Medium",
-    "hard": "Hard"
+    "hard": "Hard",
+    "neuralModel": "Neural Model"
   }
 }
